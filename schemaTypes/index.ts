@@ -1,5 +1,11 @@
-import { Portfolio } from "./Portfolio";
-import { PortfolioGallery } from "./PortfolioGallery";
-import { PortfolioSection } from "./PortfolioSection";
+import { Portfolio } from "./portfolio/Portfolio";
+import { PortfolioGallery } from "./portfolio/PortfolioGallery";
+import { PortfolioSection } from "./portfolio/PortfolioSection";
+import { Socials } from "./socials/Socials";
 
-export const schemaTypes = [PortfolioGallery, PortfolioSection, Portfolio];
+export const schemaTypes = [
+    PortfolioGallery,
+    PortfolioSection,
+    Portfolio,
+    Socials,
+];
