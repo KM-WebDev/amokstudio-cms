@@ -24,8 +24,20 @@ export const Portfolio = defineType({
         }),
         defineField({
             title: "Wyświetl na stronie głównej",
-            name: "show_on_homepage",
+            name: "showOnHomepage",
             type: "boolean",
+        }),
+        defineField({
+            title: "Kolejność na stronie głównej",
+            name: "homepageOrder",
+            type: "number",
+            initialValue: 0,
+            hidden: ({ parent }) => {
+                return !parent?.showOnHomepage;
+            },
+            validation: (rule) => {
+                return rule.required().positive().integer();
+            },
         }),
         defineField({
             title: "Sekcje",
