@@ -9,3 +9,5 @@ export const schemaTypes = [
     Portfolio,
     Socials,
 ];
+
+// Migrations: https://www.sanity.io/docs/content-lake/schema-and-content-migrations

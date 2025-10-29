@@ -28,11 +28,6 @@ export const PortfolioGallery = defineType({
                             type: "string",
                             description: "Important for accessibility and SEO",
                         },
-                        {
-                            title: "Odnośnik",
-                            name: "link",
-                            type: "url",
-                        },
                     ],
                 },
             ],

@@ -15,6 +15,23 @@ export const Portfolio = defineType({
             title: "Główne zdjęcie",
             name: "mainImage",
             type: "image",
+            options: {
+                hotspot: true,
+            },
+            fields: [
+                {
+                    title: "Opis",
+                    name: "caption",
+                    type: "string",
+                    options: { isHighlighted: true },
+                },
+                {
+                    title: "Tekst alternatywny",
+                    name: "alt",
+                    type: "string",
+                    description: "Important for accessibility and SEO",
+                },
+            ],
         }),
         defineField({
             title: "Krótki opis",
