@@ -18,6 +18,7 @@ export default defineConfig({
                     .title("Content")
                     .items([
                         orderableDocumentListDeskItem({
+                            title: "Portfolio",
                             type: "portfolio",
                             S,
                             context,
