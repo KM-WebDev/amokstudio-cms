@@ -20,7 +20,6 @@ export const PortfolioGallery = defineType({
                             title: "Opis",
                             name: "caption",
                             type: "string",
-                            options: { isHighlighted: true },
                         },
                         {
                             title: "Tekst alternatywny",

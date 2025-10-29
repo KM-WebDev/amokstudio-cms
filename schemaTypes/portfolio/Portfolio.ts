@@ -1,9 +1,14 @@
+import {
+    orderRankField,
+    orderRankOrdering,
+} from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 
 export const Portfolio = defineType({
     title: "Portfolio",
     name: "portfolio",
     type: "document",
+    orderings: [orderRankOrdering],
     fields: [
         defineField({
             title: "Tytuł",
@@ -23,7 +28,6 @@ export const Portfolio = defineType({
                     title: "Opis",
                     name: "caption",
                     type: "string",
-                    options: { isHighlighted: true },
                 },
                 {
                     title: "Tekst alternatywny",
@@ -45,18 +49,6 @@ export const Portfolio = defineType({
             type: "boolean",
         }),
         defineField({
-            title: "Kolejność na stronie głównej",
-            name: "homepageOrder",
-            type: "number",
-            initialValue: 0,
-            hidden: ({ parent }) => {
-                return !parent?.showOnHomepage;
-            },
-            validation: (rule) => {
-                return rule.required().positive().integer();
-            },
-        }),
-        defineField({
             title: "Sekcje",
             name: "sections",
             type: "array",
@@ -71,5 +63,6 @@ export const Portfolio = defineType({
             name: "gallery",
             type: "portfolioGallery",
         }),
+        orderRankField({ type: "category", hidden: true }),
     ],
 });

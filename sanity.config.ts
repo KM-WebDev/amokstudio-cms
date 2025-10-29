@@ -1,18 +1,35 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+import { defineConfig } from "sanity";
+import { structureTool } from "sanity/structure";
+import { visionTool } from "@sanity/vision";
+import { schemaTypes } from "./schemaTypes";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 
 export default defineConfig({
-  name: 'default',
-  title: 'amokstudio',
+    name: "default",
+    title: "amokstudio",
 
-  projectId: '32tlrsqk',
-  dataset: 'production',
+    projectId: "32tlrsqk",
+    dataset: "production",
 
-  plugins: [structureTool(), visionTool()],
+    plugins: [
+        structureTool({
+            structure: (S, context) => {
+                return S.list()
+                    .title("Content")
+                    .items([
+                        orderableDocumentListDeskItem({
+                            type: "portfolio",
+                            S,
+                            context,
+                        }),
+                        S.documentTypeListItem("contactInfo"),
+                    ]);
+            },
+        }),
+        visionTool(),
+    ],
 
-  schema: {
-    types: schemaTypes,
-  },
-})
+    schema: {
+        types: schemaTypes,
+    },
+});
