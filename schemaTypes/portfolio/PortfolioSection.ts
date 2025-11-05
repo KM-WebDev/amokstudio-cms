@@ -1,20 +1,20 @@
-import { defineField, defineType } from "sanity";
+import {
+    defineMultiLine,
+    defineObject,
+    defineSingleLine,
+} from "../definitions";
 
-export const PortfolioSection = defineType({
+export const PortfolioSection = defineObject({
     title: "Sekcja",
     name: "portfolioSection",
-    type: "object",
     fields: [
-        defineField({
+        defineSingleLine({
             title: "Nagłówek",
             name: "heading",
-            type: "string",
         }),
-        defineField({
+        defineMultiLine({
             title: "Zawartość",
             name: "content",
-            type: "array",
-            of: [{ type: "block" }],
         }),
     ],
 });

@@ -4,6 +4,11 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemaTypes";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 
+import { GrGallery } from "react-icons/gr";
+import { RiContactsLine } from "react-icons/ri";
+
+const devPlugins = process.env.NODE_ENV === "development" ? [visionTool()] : [];
+
 export default defineConfig({
     name: "default",
     title: "amokstudio",
@@ -22,12 +27,21 @@ export default defineConfig({
                             type: "portfolio",
                             S,
                             context,
+                            icon: GrGallery,
                         }),
-                        S.documentTypeListItem("contactInfo"),
+                        S.listItem()
+                            .title("Dane Kontaktowe")
+                            .id("contactInfo")
+                            .child(
+                                S.document()
+                                    .schemaType("contactInfo")
+                                    .documentId("contactInfo")
+                            )
+                            .icon(RiContactsLine),
                     ]);
             },
         }),
-        visionTool(),
+        ...devPlugins,
     ],
 
     schema: {

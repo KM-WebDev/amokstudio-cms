@@ -1,47 +1,33 @@
-import { defineField, defineType } from "sanity";
+import {
+    defineArrayOfType,
+    defineDocument,
+    defineSingleLine,
+} from "../definitions";
 
-export const Socials = defineType({
+export const Socials = defineDocument({
     title: "Dane Kontaktowe",
     name: "contactInfo",
-    type: "document",
     fields: [
-        defineField({
+        defineSingleLine({
             title: "Tytuł",
             name: "title",
-            type: "string",
             hidden: true,
             initialValue: "Dane Kontaktowe",
         }),
-        defineField({
+        defineArrayOfType({
             title: "Email",
             name: "emails",
-            type: "array",
-            of: [
-                {
-                    type: "string",
-                    // validation: (rule) => rule.email(),
-                },
-            ],
+            elementType: "string",
         }),
-        defineField({
+        defineArrayOfType({
             title: "Numer telefonu",
             name: "phoneNumber",
-            type: "array",
-            of: [
-                {
-                    type: "string",
-                },
-            ],
+            elementType: "string",
         }),
-        defineField({
+        defineArrayOfType({
             title: "Sociale",
             name: "socials",
-            type: "array",
-            of: [
-                {
-                    type: "string",
-                },
-            ],
+            elementType: "string",
         }),
     ],
 });

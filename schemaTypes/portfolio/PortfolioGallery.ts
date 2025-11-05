@@ -1,34 +1,30 @@
-import { defineField, defineType } from "sanity";
+import {
+    defineArrayOf,
+    defineDropDown,
+    defineImage,
+    defineObject,
+} from "../definitions";
 
-export const PortfolioGallery = defineType({
+export const PortfolioGallery = defineObject({
     title: "Galeria",
     name: "portfolioGallery",
-    type: "object",
     fields: [
-        defineField({
+        defineArrayOf({
             title: " ",
             name: "images",
-            type: "array",
-            of: [
-                {
-                    type: "image",
-                    options: {
-                        hotspot: true,
-                    },
+            fields: [
+                defineImage({
+                    title: "Zdjęcie",
+                    name: "image",
                     fields: [
-                        {
-                            title: "Opis",
-                            name: "caption",
-                            type: "string",
-                        },
-                        {
-                            title: "Tekst alternatywny",
-                            name: "alt",
-                            type: "string",
-                            description: "Important for accessibility and SEO",
-                        },
+                        defineDropDown({
+                            title: "Apsekt zdjęcia",
+                            name: "type",
+                            options: ["3:4", "square", "16:9", "panorama"],
+                            initialValue: "3:4",
+                        }),
                     ],
-                },
+                }),
             ],
         }),
     ],
