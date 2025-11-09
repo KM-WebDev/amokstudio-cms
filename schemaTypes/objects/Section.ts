@@ -4,9 +4,9 @@ import {
     defineSingleLine,
 } from "../definitions";
 
-export const PortfolioSection = defineObject({
+export const Section = defineObject({
     title: "Sekcja",
-    name: "portfolioSection",
+    name: "section",
     fields: [
         defineSingleLine({
             title: "Nagłówek",

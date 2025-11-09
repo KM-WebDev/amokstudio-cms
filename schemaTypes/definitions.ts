@@ -10,6 +10,8 @@ import {
     ObjectArrayFieldProps,
     FieldProps,
     DropDownFieldProps,
+    DocumentFieldProps,
+    ImageFieldProps,
 } from "./types";
 
 export function defineOrderedDocument(props: FieldProps) {
@@ -19,7 +21,6 @@ export function defineOrderedDocument(props: FieldProps) {
         name: props.name,
         description: props.description,
         orderings: [orderRankOrdering],
-        initialValue: props.initialValue,
         hidden: props.hidden,
         fields: [
             ...(props.fields || []),
@@ -28,14 +29,14 @@ export function defineOrderedDocument(props: FieldProps) {
     });
 }
 
-export function defineDocument(props: FieldProps) {
+export function defineDocument(props: DocumentFieldProps) {
     return defineType({
         type: "document",
         title: props.title,
         name: props.name,
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
+        groups: props.groups,
         fields: props.fields || [],
     });
 }
@@ -46,9 +47,19 @@ export function defineObject(props: FieldProps) {
         title: props.title,
         name: props.name,
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
         fields: props.fields || [],
+    });
+}
+
+export function defineColorPicker(props: FieldProps) {
+    return defineType({
+        type: "color",
+        title: props.title,
+        name: props.name,
+        description: props.description,
+
+        hidden: props.hidden,
     });
 }
 
@@ -58,8 +69,8 @@ export function defineSingleLine(props: SingleLineFieldProps) {
         title: props.title,
         name: props.name,
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
+        group: props.group,
         validation: props.validation,
     });
 }
@@ -72,6 +83,7 @@ export function defineDropDown(props: DropDownFieldProps) {
         description: props.description,
         initialValue: props.initialValue,
         hidden: props.hidden,
+        group: props.group,
         options: {
             list: props.options.map((option) => {
                 return {
@@ -89,8 +101,8 @@ export function defineRichMultiLine(props: MultiLineFieldProps) {
         title: props.title,
         name: props.name,
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
+        group: props.group,
         of: [{ type: "block" }],
         validation: props.validation,
     });
@@ -102,27 +114,28 @@ export function defineMultiLine(props: MultiLineFieldProps) {
         title: props.title,
         name: props.name,
         description: props.description,
-        initialValue: props.initialValue,
+        group: props.group,
         hidden: props.hidden,
     });
 }
 
-export function defineImage(props: FieldProps) {
+export function defineImage(props: ImageFieldProps) {
     return defineField({
         type: "image",
         title: props.title,
         name: props.name,
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
+        group: props.group,
+        validation: props.validation,
         options: {
             hotspot: true,
         },
         fields: [
-            defineSingleLine({
-                title: "Opis",
-                name: "caption",
-            }),
+            // defineSingleLine({
+            //     title: "Opis",
+            //     name: "caption",
+            // }),
             defineSingleLine({
                 title: "Tekst alternatywny",
                 name: "alt",
@@ -138,8 +151,8 @@ export function defineBool(props: FieldProps) {
         title: props.title,
         name: props.name,
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
+        group: props.group,
         type: "boolean",
     });
 }
@@ -150,8 +163,8 @@ export function defineArrayOfType(props: ObjectArrayFieldProps) {
         name: props.name,
         type: "array",
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
+        group: props.group,
         of: [{ type: props.elementType }],
     });
 }
@@ -162,8 +175,8 @@ export function defineArrayOf(props: FieldProps) {
         name: props.name,
         type: "array",
         description: props.description,
-        initialValue: props.initialValue,
         hidden: props.hidden,
+        group: props.group,
         of: props.fields || [],
     });
 }

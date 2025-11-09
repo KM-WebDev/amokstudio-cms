@@ -7,9 +7,13 @@ export type FieldProps = {
     description?: string;
     fields?: FieldDefinition[];
     hidden?: boolean;
-    initialValue?: InitialValueProperty<any, ImageValue>;
+    group?: string | string[];
 };
 
+export type ImageFieldProps = {
+    initialValue?: InitialValueProperty<any, ImageValue>;
+    validation?: ValidationBuilder<ImageRule, ImageValue>;
+} & FieldProps;
 export type SingleLineFieldProps = {
     validation?: ValidationBuilder<StringRule, string>;
 } & FieldProps;
@@ -22,9 +26,15 @@ export type ObjectArrayFieldProps = {
     elementType: SanityTypeString | string;
 } & FieldProps;
 
+export type DocumentFieldProps = {
+    groups?: FieldGroupDefinition[];
+} & FieldProps;
+
 export type DropDownFieldProps = {
     options: string[];
+    initialValue: InitialValueProperty<any, string>;
 } & FieldProps;
+
 export type SanityTypeString =
     | "string"
     | "number"

@@ -4,7 +4,7 @@ import {
     defineSingleLine,
 } from "../definitions";
 
-export const Socials = defineDocument({
+export const Contact = defineDocument({
     title: "Dane Kontaktowe",
     name: "contactInfo",
     fields: [

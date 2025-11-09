@@ -21,6 +21,7 @@ export const Portfolio = defineOrderedDocument({
             title: "Główne zdjęcie",
             name: "mainImage",
             description: "Wymiar zdjęcia: square",
+            validation: (rule) => rule.required(),
         }),
         defineMultiLine({
             title: "Krótki opis",
@@ -33,12 +34,12 @@ export const Portfolio = defineOrderedDocument({
         defineArrayOfType({
             title: "Sekcje",
             name: "sections",
-            elementType: "portfolioSection",
+            elementType: "section",
         }),
         defineField({
             title: "Galeria",
             name: "gallery",
-            type: "portfolioGallery",
+            type: "gallery",
         }),
     ],
 });

@@ -3,11 +3,12 @@ import {
     defineDropDown,
     defineImage,
     defineObject,
+    defineSingleLine,
 } from "../definitions";
 
-export const PortfolioGallery = defineObject({
+export const Gallery = defineObject({
     title: "Galeria",
-    name: "portfolioGallery",
+    name: "gallery",
     fields: [
         defineArrayOf({
             title: " ",
@@ -17,6 +18,10 @@ export const PortfolioGallery = defineObject({
                     title: "Zdjęcie",
                     name: "image",
                     fields: [
+                        defineSingleLine({
+                            title: "Opis",
+                            name: "caption",
+                        }),
                         defineDropDown({
                             title: "Apsekt zdjęcia",
                             name: "type",
