@@ -10,7 +10,7 @@ export const PortfolioInfo = defineObject({
     fields: [
         defineSingleLine({
             title: "Tytuł",
-            name: "title",
+            name: "mainTitle",
         }),
         defineMultiLine({
             title: "Opis",

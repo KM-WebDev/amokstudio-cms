@@ -71,6 +71,7 @@ export function defineSingleLine(props: SingleLineFieldProps) {
         description: props.description,
         hidden: props.hidden,
         group: props.group,
+        initialValue: props.initialValue,
         validation: props.validation,
     });
 }

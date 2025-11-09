@@ -19,7 +19,7 @@ export const Services = defineDocument({
         defineArrayOfType({
             title: "Sekcje",
             name: "sections",
-            elementType: "bento",
+            elementType: "sectionColor",
         }),
     ],
 });

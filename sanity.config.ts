@@ -12,6 +12,7 @@ import { MdPlusOne } from "react-icons/md";
 import { FaTshirt } from "react-icons/fa";
 import { LuContact } from "react-icons/lu";
 import { FaQuestion } from "react-icons/fa6";
+import { LuMegaphone } from "react-icons/lu";
 
 import { Dataset } from "./env";
 import { createHashMap } from "./hashmap";
@@ -45,6 +46,10 @@ const singletonTypes = createHashMap({
     faq: {
         title: "FAQ",
         icon: FaQuestion,
+    },
+    cta: {
+        title: "CTA",
+        icon: LuMegaphone,
     },
     contactInfo: {
         title: "Dane Kontaktowe",

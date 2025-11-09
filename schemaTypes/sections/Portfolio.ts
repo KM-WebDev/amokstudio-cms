@@ -27,6 +27,11 @@ export const Portfolio = defineOrderedDocument({
             title: "Krótki opis",
             name: "description",
         }),
+        defineField({
+            title: "Główna sekcja",
+            name: "mainSection",
+            type: "section",
+        }),
         defineBool({
             title: "Wyświetl na stronie głównej",
             name: "showOnHomepage",

@@ -3,11 +3,11 @@ import {
     defineMultiLine,
     defineObject,
     defineSingleLine,
-} from "../../definitions";
+} from "../definitions";
 
-export const Bento = defineObject({
-    title: "Bento",
-    name: "bento",
+export const SectionColor = defineObject({
+    title: "Sekcja",
+    name: "sectionColor",
     fields: [
         defineSingleLine({
             title: "Tytuł",

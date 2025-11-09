@@ -14,8 +14,10 @@ export type ImageFieldProps = {
     initialValue?: InitialValueProperty<any, ImageValue>;
     validation?: ValidationBuilder<ImageRule, ImageValue>;
 } & FieldProps;
+
 export type SingleLineFieldProps = {
     validation?: ValidationBuilder<StringRule, string>;
+    initialValue?: InitialValueProperty<any, string>;
 } & FieldProps;
 
 export type MultiLineFieldProps = {

@@ -26,33 +26,33 @@ export const About = defineDocument({
     fields: [
         defineSingleLine({
             title: "Tytuł",
-            name: "short_title",
+            name: "shortTitle",
             group: "short",
         }),
         defineSingleLine({
             title: "Tytuł sekcji",
-            name: "short_section_title",
+            name: "shortSectionTitle",
             group: "short",
         }),
         defineMultiLine({
             title: "Opis",
-            name: "short_description",
+            name: "shortDescription",
             group: "short",
         }),
 
         defineSingleLine({
             title: "Tytuł",
-            name: "long_title",
+            name: "longTitle",
             group: "long",
         }),
         defineMultiLine({
             title: "Opis",
-            name: "long_description",
+            name: "longDescription",
             group: "long",
         }),
         defineImage({
             title: "Główne zdjęcie",
-            name: "main_image",
+            name: "mainImage",
             group: "long",
         }),
     ],

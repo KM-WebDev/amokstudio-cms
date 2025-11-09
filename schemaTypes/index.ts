@@ -1,7 +1,7 @@
 import { Portfolio } from "./sections/Portfolio";
 import { Gallery } from "./objects/Gallery";
 import { Section } from "./objects/Section";
-import { Bento } from "./sections/objects/Bento";
+import { SectionColor } from "./objects/SectionColor";
 import { Hero } from "./sections/Hero";
 import { Services } from "./sections/Services";
 import { Contact } from "./sections/Contact";
@@ -9,6 +9,7 @@ import { About } from "./sections/About";
 import { PortfolioInfo } from "./sections/PortfolioInfo";
 import { Features } from "./sections/Features";
 import { FAQ } from "./sections/FAQ";
+import { CTA } from "./sections/CTA";
 
 export const schemaTypes = [
     Gallery,
@@ -18,10 +19,11 @@ export const schemaTypes = [
     Hero,
     About,
     PortfolioInfo,
-    Bento,
+    SectionColor,
     Services,
     Features,
     FAQ,
+    CTA,
 ];
 
 // Migrations: https://www.sanity.io/docs/content-lake/schema-and-content-migrations
