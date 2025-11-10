@@ -37,6 +37,15 @@ export type DropDownFieldProps = {
     initialValue: InitialValueProperty<any, string>;
 } & FieldProps;
 
+export type Tag = {
+    label: string;
+    value: string;
+};
+
+export type TagFielsProps = {
+    tags: Tag[];
+} & FieldProps;
+
 export type SanityTypeString =
     | "string"
     | "number"

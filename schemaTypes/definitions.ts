@@ -12,6 +12,7 @@ import {
     DropDownFieldProps,
     DocumentFieldProps,
     ImageFieldProps,
+    TagFielsProps,
 } from "./types";
 
 export function defineOrderedDocument(props: FieldProps) {
@@ -92,6 +93,20 @@ export function defineDropDown(props: DropDownFieldProps) {
                     value: option,
                 };
             }),
+        },
+    });
+}
+
+export function defineTags(props: TagFielsProps) {
+    return defineField({
+        type: "tags",
+        title: props.title,
+        name: props.name,
+        description: props.description,
+        hidden: props.hidden,
+        group: props.group,
+        options: {
+            predefinedTags: props.tags,
         },
     });
 }

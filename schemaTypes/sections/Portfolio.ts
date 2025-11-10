@@ -3,9 +3,9 @@ import {
     defineArrayOfType,
     defineBool,
     defineImage,
-    defineMultiLine,
     defineOrderedDocument,
     defineSingleLine,
+    defineTags,
 } from "../definitions";
 
 export const Portfolio = defineOrderedDocument({
@@ -16,6 +16,24 @@ export const Portfolio = defineOrderedDocument({
             title: "Tytuł",
             name: "title",
             validation: (rule) => rule.required(),
+        }),
+        defineTags({
+            title: "Tagi",
+            name: "tags",
+            tags: [
+                {
+                    label: "loga",
+                    value: "logos",
+                },
+                {
+                    label: "koszulki",
+                    value: "shirts",
+                },
+                {
+                    label: "design",
+                    value: "design",
+                },
+            ],
         }),
         defineImage({
             title: "Główne zdjęcie",

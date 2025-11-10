@@ -2,6 +2,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./schemaTypes";
+import { tags } from "sanity-plugin-tags-v4";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 
 import { GrGallery } from "react-icons/gr";
@@ -107,6 +108,7 @@ export default defineConfig({
         }),
         ...devPlugins,
         colorInput(),
+        tags(),
     ],
 
     schema: {
