@@ -10,6 +10,7 @@ import { PortfolioInfo } from "./sections/PortfolioInfo";
 import { Features } from "./sections/Features";
 import { FAQ } from "./sections/FAQ";
 import { CTA } from "./sections/CTA";
+import { Reviews } from "./sections/Reviews";
 
 export const schemaTypes = [
     Gallery,
@@ -22,6 +23,7 @@ export const schemaTypes = [
     SectionColor,
     Services,
     Features,
+    Reviews,
     FAQ,
     CTA,
 ];

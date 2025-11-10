@@ -29,5 +29,9 @@ export const Contact = defineDocument({
             name: "socials",
             elementType: "string",
         }),
+        defineSingleLine({
+            title: "Lokalizacja",
+            name: "location",
+        }),
     ],
 });

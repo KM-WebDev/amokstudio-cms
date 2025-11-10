@@ -13,6 +13,7 @@ import { FaTshirt } from "react-icons/fa";
 import { LuContact } from "react-icons/lu";
 import { FaQuestion } from "react-icons/fa6";
 import { LuMegaphone } from "react-icons/lu";
+import { MdOutlineReviews } from "react-icons/md";
 
 import { Dataset } from "./env";
 import { createHashMap } from "./hashmap";
@@ -57,6 +58,17 @@ const singletonTypes = createHashMap({
     },
 });
 
+const orderableTypes = createHashMap({
+    portfolio: {
+        title: "Portfolio",
+        icon: GrGallery,
+    },
+    reviews: {
+        title: "Opinie",
+        icon: MdOutlineReviews,
+    },
+});
+
 export default defineConfig({
     name: "default",
     title: "amokstudio",
@@ -69,13 +81,16 @@ export default defineConfig({
                 S.list()
                     .title("Content")
                     .items([
-                        orderableDocumentListDeskItem({
-                            title: "Portfolio",
-                            type: "portfolio",
-                            S,
-                            context,
-                            icon: GrGallery,
-                        }),
+                        ...Object.entries(orderableTypes.data).map(
+                            ([key, value]) =>
+                                orderableDocumentListDeskItem({
+                                    title: value.title,
+                                    type: key,
+                                    S,
+                                    context,
+                                    icon: value.icon,
+                                })
+                        ),
                         ...Object.entries(singletonTypes.data).map(
                             ([key, value]) =>
                                 S.listItem()

@@ -19,6 +19,10 @@ export const About = defineDocument({
             title: "Podstrona",
         },
         {
+            name: "rest",
+            title: "Inne",
+        },
+        {
             ...ALL_FIELDS_GROUP,
             hidden: true,
         },
@@ -51,9 +55,9 @@ export const About = defineDocument({
             group: "long",
         }),
         defineImage({
-            title: "Główne zdjęcie",
+            title: "Zdjęcie",
             name: "mainImage",
-            group: "long",
+            group: "rest",
         }),
     ],
 });

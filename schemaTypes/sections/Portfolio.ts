@@ -23,7 +23,7 @@ export const Portfolio = defineOrderedDocument({
             description: "Wymiar zdjęcia: square",
             validation: (rule) => rule.required(),
         }),
-        defineMultiLine({
+        defineSingleLine({
             title: "Krótki opis",
             name: "description",
         }),
