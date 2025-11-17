@@ -1,31 +1,39 @@
-import { Portfolio } from "./sections/Portfolio";
-import { Gallery } from "./objects/Gallery";
-import { Section } from "./objects/Section";
+import { PortfolioInfo } from "./sections/PortfolioInfo";
 import { SectionColor } from "./objects/SectionColor";
-import { Hero } from "./sections/Hero";
+import { FormChoice } from "./objects/FormChoice";
+import { Portfolio } from "./sections/Portfolio";
+import { Features } from "./sections/Features";
 import { Services } from "./sections/Services";
 import { Contact } from "./sections/Contact";
-import { About } from "./sections/About";
-import { PortfolioInfo } from "./sections/PortfolioInfo";
-import { Features } from "./sections/Features";
-import { FAQ } from "./sections/FAQ";
-import { CTA } from "./sections/CTA";
+import { Gallery } from "./objects/Gallery";
 import { Reviews } from "./sections/Reviews";
+import { Section } from "./objects/Section";
+import { About } from "./sections/About";
+import { Form } from "./sections/Form";
+import { Hero } from "./sections/Hero";
+import { CTA } from "./sections/CTA";
+import { FAQ } from "./sections/FAQ";
+import { FormQuestion } from "./objects/FormQuestion";
+import { FormBoolean } from "./objects/FormBoolean";
 
 export const schemaTypes = [
-    Gallery,
-    Section,
-    Portfolio,
-    Contact,
-    Hero,
-    About,
     PortfolioInfo,
     SectionColor,
-    Services,
+    FormQuestion,
+    FormBoolean,
+    FormChoice,
+    Portfolio,
     Features,
+    Services,
+    Contact,
+    Gallery,
     Reviews,
-    FAQ,
+    Section,
+    About,
+    Form,
+    Hero,
     CTA,
+    FAQ,
 ];
 
 // Migrations: https://www.sanity.io/docs/content-lake/schema-and-content-migrations

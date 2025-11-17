@@ -15,6 +15,7 @@ import { LuContact } from "react-icons/lu";
 import { FaQuestion } from "react-icons/fa6";
 import { LuMegaphone } from "react-icons/lu";
 import { MdOutlineReviews } from "react-icons/md";
+import { FaWpforms } from "react-icons/fa";
 
 import { Dataset } from "./env";
 import { createHashMap } from "./hashmap";
@@ -52,6 +53,10 @@ const singletonTypes = createHashMap({
     cta: {
         title: "CTA",
         icon: LuMegaphone,
+    },
+    form: {
+        title: "Formularz",
+        icon: FaWpforms,
     },
     contactInfo: {
         title: "Dane Kontaktowe",

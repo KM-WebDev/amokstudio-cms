@@ -2,6 +2,7 @@ import { defineField } from "sanity";
 import {
     defineArrayOfType,
     defineBool,
+    defineDropDown,
     defineImage,
     defineOrderedDocument,
     defineSingleLine,
@@ -40,6 +41,15 @@ export const Portfolio = defineOrderedDocument({
             name: "mainImage",
             description: "Wymiar zdjęcia: square",
             validation: (rule) => rule.required(),
+            fields: [
+                defineDropDown({
+                    title: "Apsekt zdjęcia",
+                    name: "aspect",
+                    options: ["square"],
+                    initialValue: "square",
+                    readOnly: true,
+                }),
+            ],
         }),
         defineSingleLine({
             title: "Krótki opis",

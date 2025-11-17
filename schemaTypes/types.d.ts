@@ -1,4 +1,11 @@
-import { ArrayRule, ImageOptions, StringRule, ValidationBuilder } from "sanity";
+import {
+    ArrayRule,
+    ConditionalProperty,
+    ImageOptions,
+    StringRule,
+    ValidationBuilder,
+    MaybePreview,
+} from "sanity";
 import { SanityTypeString } from "./types";
 
 export type FieldProps = {
@@ -6,9 +13,13 @@ export type FieldProps = {
     name: string;
     description?: string;
     fields?: FieldDefinition[];
-    hidden?: boolean;
+    hidden?: ConditionalProperty;
     group?: string | string[];
 };
+
+export type ObjectTypeProps = {
+    preview?: MaybePreview<TSelect, TPrepareValue>;
+} & FieldProps;
 
 export type ImageFieldProps = {
     initialValue?: InitialValueProperty<any, ImageValue>;
@@ -35,6 +46,7 @@ export type DocumentFieldProps = {
 export type DropDownFieldProps = {
     options: string[];
     initialValue: InitialValueProperty<any, string>;
+    readOnly?: boolean;
 } & FieldProps;
 
 export type Tag = {

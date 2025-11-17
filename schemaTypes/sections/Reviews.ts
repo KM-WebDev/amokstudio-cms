@@ -1,5 +1,7 @@
+import { ConditionalPropertyCallbackContext } from "sanity";
 import {
     defineDropDown,
+    defineImage,
     defineMultiLine,
     defineOrderedDocument,
     defineSingleLine,
@@ -13,6 +15,10 @@ export const Reviews = defineOrderedDocument({
             title: "Imie autora opinii",
             name: "author",
         }),
+        defineImage({
+            title: "Zdjęcie autora opinii",
+            name: "avatar",
+        }),
         defineMultiLine({
             title: "Zawartość opinii",
             name: "content",
@@ -22,6 +28,11 @@ export const Reviews = defineOrderedDocument({
             name: "source",
             options: ["Google", "Facebook", "Inne"],
             initialValue: "Facebook",
+        }),
+        defineSingleLine({
+            title: "Link do serwisu skąd pochodzi opinia",
+            name: "sourceLink",
+            hidden: ({ parent }) => parent.source !== "Inne",
         }),
         defineDropDown({
             title: "Ocena",

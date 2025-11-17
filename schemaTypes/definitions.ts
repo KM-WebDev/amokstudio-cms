@@ -13,6 +13,7 @@ import {
     DocumentFieldProps,
     ImageFieldProps,
     TagFielsProps,
+    ObjectTypeProps,
 } from "./types";
 
 export function defineOrderedDocument(props: FieldProps) {
@@ -42,7 +43,7 @@ export function defineDocument(props: DocumentFieldProps) {
     });
 }
 
-export function defineObject(props: FieldProps) {
+export function defineObject(props: ObjectTypeProps) {
     return defineType({
         type: "object",
         title: props.title,
@@ -50,6 +51,7 @@ export function defineObject(props: FieldProps) {
         description: props.description,
         hidden: props.hidden,
         fields: props.fields || [],
+        preview: props.preview,
     });
 }
 
@@ -86,6 +88,8 @@ export function defineDropDown(props: DropDownFieldProps) {
         initialValue: props.initialValue,
         hidden: props.hidden,
         group: props.group,
+        readOnly: props.readOnly,
+        validation: (rule) => rule.required(),
         options: {
             list: props.options.map((option) => {
                 return {
@@ -148,10 +152,6 @@ export function defineImage(props: ImageFieldProps) {
             hotspot: true,
         },
         fields: [
-            // defineSingleLine({
-            //     title: "Opis",
-            //     name: "caption",
-            // }),
             defineSingleLine({
                 title: "Tekst alternatywny",
                 name: "alt",
