@@ -42,6 +42,9 @@ export const Portfolio = defineOrderedDocument({
             title: "Główne zdjęcie",
             name: "mainImage",
             validation: <T>(rule: RuleDef<T>) => rule.required(),
+            options: {
+                hotspot: true
+            },
             fields: [
                 defineDropDown({
                     title: "Apsekt zdjęcia",
