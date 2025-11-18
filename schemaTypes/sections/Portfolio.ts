@@ -1,4 +1,4 @@
-import { defineField } from "sanity";
+import { defineField, RuleDef } from "sanity";
 import {
     defineArrayOfType,
     defineBool,
@@ -7,6 +7,7 @@ import {
     defineOrderedDocument,
     defineSingleLine,
     defineTags,
+    defineSlug,
 } from "../definitions";
 
 export const Portfolio = defineOrderedDocument({
@@ -16,8 +17,9 @@ export const Portfolio = defineOrderedDocument({
         defineSingleLine({
             title: "Tytuł",
             name: "title",
-            validation: (rule) => rule.required(),
+            validation: <T>(rule: RuleDef<T>) => rule.required(),
         }),
+        defineSlug(),
         defineTags({
             title: "Tagi",
             name: "tags",
@@ -39,12 +41,13 @@ export const Portfolio = defineOrderedDocument({
         defineImage({
             title: "Główne zdjęcie",
             name: "mainImage",
-            description: "Wymiar zdjęcia: square",
-            validation: (rule) => rule.required(),
+            validation: <T>(rule: RuleDef<T>) => rule.required(),
             fields: [
                 defineDropDown({
                     title: "Apsekt zdjęcia",
                     name: "aspect",
+                    description:
+                        "Zdjęcie główne zawsze będzie wyświatlane jako kwadrat",
                     options: ["square"],
                     initialValue: "square",
                     readOnly: true,

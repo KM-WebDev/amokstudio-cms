@@ -1,17 +1,13 @@
-import { defineField, defineType } from "sanity";
-
 import { FaCheck } from "react-icons/fa";
-import { defineBool } from "../definitions";
+import { defineBool, defineObject, defineSingleLine } from "../definitions";
 
-export const FormBoolean = defineType({
+export const FormBoolean = defineObject({
     title: "Pytanie Tak/Nie",
-    type: "object",
     name: "formBoolean",
     icon: () => <FaCheck />,
     fields: [
-        defineField({
+        defineSingleLine({
             title: "Pytanie",
-            type: "string",
             name: "question",
         }),
         defineBool({
@@ -20,9 +16,9 @@ export const FormBoolean = defineType({
         }),
     ],
     preview: {
-        select: { title: "question" },
-        prepare({ title }) {
-            return { title: title };
+        select: { question: "question" },
+        prepare({ question }) {
+            return { title: question };
         },
     },
 });

@@ -1,20 +1,22 @@
-import { defineField, defineType } from "sanity";
+import { defineField } from "sanity";
+import {
+    defineArrayOf,
+    defineDocument,
+    defineSingleLine,
+} from "../definitions";
 
-export const Form = defineType({
+export const Form = defineDocument({
     title: "Formularz",
-    type: "document",
     name: "form",
     fields: [
-        defineField({
-            type: "string",
-            name: "title",
+        defineSingleLine({
             title: "Tytuł",
+            name: "title",
         }),
-        defineField({
+        defineArrayOf({
             title: "Pytania",
-            type: "array",
             name: "inputs",
-            of: [
+            fields: [
                 defineField({
                     title: "Pytanie Otwarte",
                     name: "question",

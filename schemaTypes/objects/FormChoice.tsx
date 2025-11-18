@@ -1,15 +1,14 @@
-import { defineType } from "sanity";
 import {
     defineArrayOfType,
     defineBool,
+    defineObject,
     defineSingleLine,
 } from "../definitions";
 
 import { FaListUl } from "react-icons/fa";
 
-export const FormChoice = defineType({
-    title: "Wybór jednokrotny",
-    type: "object",
+export const FormChoice = defineObject({
+    title: "Pytanie wybór",
     name: "formChoice",
     icon: () => <FaListUl />,
     fields: [
@@ -32,17 +31,23 @@ export const FormChoice = defineType({
         }),
     ],
     preview: {
-        select: { choices: "choices", title: "question" },
-        prepare(selection) {
-            const { title, choices } = selection;
-            return {
-                title:
-                    title +
-                    ": " +
-                    (Array.isArray(choices)
-                        ? choices.join(", ")
-                        : "Brak opcji"),
-            };
+        select: { question: "question" },
+        prepare({ question }) {
+            return { title: question };
         },
     },
+    // preview: {
+    //     select: { choices: "choices", title: "question" },
+    //     prepare(selection) {
+    //         const { title, choices } = selection;
+    //         return {
+    //             title:
+    //                 title +
+    //                 ": " +
+    //                 (Array.isArray(choices)
+    //                     ? choices.join(", ")
+    //                     : "Brak opcji"),
+    //         };
+    //     },
+    // },
 });

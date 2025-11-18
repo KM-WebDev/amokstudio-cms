@@ -18,7 +18,7 @@ export const Gallery = defineObject({
                     name: "image",
                     fields: [
                         defineDropDown({
-                            title: "Apsekt zdjęcia",
+                            title: "Proporcje zdjęcia",
                             name: "aspect",
                             options: [
                                 "3:4",

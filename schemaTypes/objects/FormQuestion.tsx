@@ -1,11 +1,9 @@
-import { defineType } from "sanity";
 import { defineBool, defineObject, defineSingleLine } from "../definitions";
 
 import { FaQuestion } from "react-icons/fa6";
 
-export const FormQuestion = defineType({
+export const FormQuestion = defineObject({
     title: "Pytanie otwarte",
-    type: "object",
     name: "formQuestion",
     icon: () => <FaQuestion />,
     fields: [
@@ -16,6 +14,10 @@ export const FormQuestion = defineType({
         defineBool({
             title: "Wymagane",
             name: "required",
+        }),
+        defineBool({
+            title: "Długi tekst",
+            name: "long",
         }),
     ],
     preview: {

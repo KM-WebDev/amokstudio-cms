@@ -1,97 +1,69 @@
-import { defineField, defineType } from "sanity";
+import {
+    ObjectType,
+    StringType,
+    ImageType,
+    ArrayType,
+    DropDownType,
+    ColorType,
+    TagType,
+    ArrayOfType,
+    BoolType,
+    TextType,
+    RichType,
+} from "./types";
 
 import {
     orderRankField,
     orderRankOrdering,
 } from "@sanity/orderable-document-list";
-import {
-    MultiLineFieldProps,
-    SingleLineFieldProps,
-    ObjectArrayFieldProps,
-    FieldProps,
-    DropDownFieldProps,
-    DocumentFieldProps,
-    ImageFieldProps,
-    TagFielsProps,
-    ObjectTypeProps,
-} from "./types";
 
-export function defineOrderedDocument(props: FieldProps) {
+import { defineField, defineType, FieldDefinition } from "sanity";
+
+import AutoSlugInput from "../components/AutoSlugInput";
+
+export function defineOrderedDocument({ fields, ...rest }: ObjectType) {
     return defineType({
+        ...rest,
         type: "document",
-        title: props.title,
-        name: props.name,
-        description: props.description,
         orderings: [orderRankOrdering],
-        hidden: props.hidden,
-        fields: [
-            ...(props.fields || []),
-            orderRankField({ type: "category", hidden: true }),
-        ],
+        fields: [...fields, orderRankField({ type: "category", hidden: true })],
     });
 }
 
-export function defineDocument(props: DocumentFieldProps) {
+export function defineDocument(props: ObjectType) {
     return defineType({
+        ...props,
         type: "document",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        hidden: props.hidden,
-        groups: props.groups,
-        fields: props.fields || [],
     });
 }
 
-export function defineObject(props: ObjectTypeProps) {
+export function defineObject(props: ObjectType) {
     return defineType({
+        ...props,
         type: "object",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        hidden: props.hidden,
-        fields: props.fields || [],
-        preview: props.preview,
     });
 }
 
-export function defineColorPicker(props: FieldProps) {
+export function defineColorPicker(props: ColorType) {
     return defineType({
+        ...props,
         type: "color",
-        title: props.title,
-        name: props.name,
-        description: props.description,
+    }) as FieldDefinition<"color">; // Otherwise linter complains...
+}
 
-        hidden: props.hidden,
+export function defineSingleLine(props: StringType) {
+    return defineField({
+        ...props,
+        type: "string",
     });
 }
 
-export function defineSingleLine(props: SingleLineFieldProps) {
+export function defineDropDown({ options, ...rest }: DropDownType) {
     return defineField({
+        ...rest,
         type: "string",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        hidden: props.hidden,
-        group: props.group,
-        initialValue: props.initialValue,
-        validation: props.validation,
-    });
-}
-
-export function defineDropDown(props: DropDownFieldProps) {
-    return defineField({
-        type: "string",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        initialValue: props.initialValue,
-        hidden: props.hidden,
-        group: props.group,
-        readOnly: props.readOnly,
-        validation: (rule) => rule.required(),
         options: {
-            list: props.options.map((option) => {
+            list: options.map((option) => {
                 return {
                     title: option,
                     value: option,
@@ -101,98 +73,84 @@ export function defineDropDown(props: DropDownFieldProps) {
     });
 }
 
-export function defineTags(props: TagFielsProps) {
+export function defineImage(props: ImageType) {
+    props.fields = [
+        defineSingleLine({
+            title: "Tekst alternatywny",
+            name: "alt",
+            description: "Important for accessibility and SEO",
+        }),
+        ...(props.fields || []),
+    ];
+
     return defineField({
-        type: "tags",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        hidden: props.hidden,
-        group: props.group,
-        options: {
-            predefinedTags: props.tags,
-        },
+        ...props,
+        type: "image",
     });
 }
 
-export function defineRichMultiLine(props: MultiLineFieldProps) {
+export function defineArrayOf({ fields, ...rest }: ArrayType) {
     return defineField({
         type: "array",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        hidden: props.hidden,
-        group: props.group,
-        of: [{ type: "block" }],
-        validation: props.validation,
+        ...rest,
+        of: fields || [],
     });
 }
 
-export function defineMultiLine(props: MultiLineFieldProps) {
+export function defineTags({ tags, ...rest }: TagType) {
     return defineField({
-        type: "text",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        group: props.group,
-        hidden: props.hidden,
-    });
-}
-
-export function defineImage(props: ImageFieldProps) {
-    return defineField({
-        type: "image",
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        hidden: props.hidden,
-        group: props.group,
-        validation: props.validation,
+        ...rest,
+        type: "tags",
         options: {
-            hotspot: true,
+            predefinedTags: tags,
         },
-        fields: [
-            defineSingleLine({
-                title: "Tekst alternatywny",
-                name: "alt",
-                description: "Important for accessibility and SEO",
-            }),
-            ...(props.fields || []),
-        ],
     });
 }
 
-export function defineBool(props: FieldProps) {
+export function defineSlug() {
     return defineField({
-        title: props.title,
-        name: props.name,
-        description: props.description,
-        hidden: props.hidden,
-        group: props.group,
+        title: "Ścieżka",
+        description:
+            "Ścieżka generowana jest automatycznie na podstawie tytułu",
+        name: "slug",
+        type: "slug",
+        readOnly: true,
+        components: {
+            input: AutoSlugInput,
+        },
+        options: {
+            source: "title",
+            maxLength: 96,
+        },
+    });
+}
+
+export function defineRichMultiLine(props: RichType) {
+    return defineField({
+        ...props,
+        type: "array",
+        of: [{ type: "block" }],
+    });
+}
+
+export function defineMultiLine(props: TextType) {
+    return defineField({
+        ...props,
+        type: "text",
+    });
+}
+
+export function defineBool(props: BoolType) {
+    return defineField({
+        ...props,
         type: "boolean",
     });
 }
 
-export function defineArrayOfType(props: ObjectArrayFieldProps) {
+export function defineArrayOfType({ elementType, ...rest }: ArrayOfType) {
     return defineField({
-        title: props.title,
-        name: props.name,
+        ...rest,
         type: "array",
-        description: props.description,
-        hidden: props.hidden,
-        group: props.group,
-        of: [{ type: props.elementType }],
-    });
-}
-
-export function defineArrayOf(props: FieldProps) {
-    return defineField({
-        title: props.title,
-        name: props.name,
-        type: "array",
-        description: props.description,
-        hidden: props.hidden,
-        group: props.group,
-        of: props.fields || [],
+        of: [{ type: elementType }],
     });
 }

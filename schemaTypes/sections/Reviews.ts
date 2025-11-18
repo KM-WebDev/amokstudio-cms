@@ -1,4 +1,3 @@
-import { ConditionalPropertyCallbackContext } from "sanity";
 import {
     defineDropDown,
     defineImage,
