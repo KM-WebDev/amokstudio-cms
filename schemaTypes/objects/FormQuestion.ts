@@ -5,10 +5,10 @@ import { FaQuestion } from "react-icons/fa6";
 export const FormQuestion = defineObject({
     title: "Pytanie otwarte",
     name: "formQuestion",
-    icon: () => <FaQuestion />,
+    icon: FaQuestion,
     fields: [
         defineSingleLine({
-            title: "pytanie",
+            title: "Pytanie",
             name: "question",
         }),
         defineBool({

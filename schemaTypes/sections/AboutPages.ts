@@ -6,9 +6,9 @@ import {
     defineSingleLine,
 } from "../definitions";
 
-export const About = defineDocument({
+export const AboutPages = defineDocument({
     title: "O mnie",
-    name: "about",
+    name: "aboutPages",
     groups: [
         {
             name: "short",
@@ -20,7 +20,7 @@ export const About = defineDocument({
         },
         {
             name: "rest",
-            title: "Inne",
+            title: "Ogólne",
         },
         {
             ...ALL_FIELDS_GROUP,
@@ -35,7 +35,7 @@ export const About = defineDocument({
         }),
         defineSingleLine({
             title: "Tytuł sekcji",
-            name: "shortSectionTitle",
+            name: "shortSubTitle",
             group: "short",
         }),
         defineMultiLine({

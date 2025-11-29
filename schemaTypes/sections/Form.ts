@@ -19,17 +19,17 @@ export const Form = defineDocument({
             fields: [
                 defineField({
                     title: "Pytanie Otwarte",
-                    name: "question",
+                    name: "formQuestion",
                     type: "formQuestion",
                 }),
                 defineField({
                     title: "Pytanie Wybór",
-                    name: "choice",
+                    name: "formChoice",
                     type: "formChoice",
                 }),
                 defineField({
                     title: "Pytanie Tak/Nie",
-                    name: "bool",
+                    name: "formBoolean",
                     type: "formBoolean",
                 }),
             ],

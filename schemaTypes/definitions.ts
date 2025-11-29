@@ -6,9 +6,10 @@ import {
     DropDownType,
     ColorType,
     TagType,
-    ArrayOfType,
+    ArrayOfElementType,
     BoolType,
     TextType,
+    ReferenceToProps,
     RichType,
 } from "./types";
 
@@ -147,10 +148,22 @@ export function defineBool(props: BoolType) {
     });
 }
 
-export function defineArrayOfType({ elementType, ...rest }: ArrayOfType) {
+export function defineArrayOfType({
+    elementType,
+    ...rest
+}: ArrayOfElementType) {
     return defineField({
         ...rest,
         type: "array",
         of: [{ type: elementType }],
+    });
+}
+
+export function defineReferenceTo({ to, ...rest }: ReferenceToProps) {
+    const toArray = Array.isArray(to) ? to : [to];
+    return defineField({
+        ...rest,
+        type: "array",
+        of: [{ type: "reference", to: toArray.map((t) => ({ type: t })) }],
     });
 }

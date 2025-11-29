@@ -5,14 +5,14 @@ import {
     defineDropDown,
     defineImage,
     defineOrderedDocument,
+    defineReferenceTo,
     defineSingleLine,
-    defineTags,
     defineSlug,
 } from "../definitions";
 
-export const Portfolio = defineOrderedDocument({
+export const PortfolioSlug = defineOrderedDocument({
     title: "Portfolio",
-    name: "portfolio",
+    name: "portfolioSlug",
     fields: [
         defineSingleLine({
             title: "Tytuł",
@@ -20,30 +20,17 @@ export const Portfolio = defineOrderedDocument({
             validation: <T>(rule: RuleDef<T>) => rule.required(),
         }),
         defineSlug(),
-        defineTags({
-            title: "Tagi",
+        defineReferenceTo({
             name: "tags",
-            tags: [
-                {
-                    label: "loga",
-                    value: "logos",
-                },
-                {
-                    label: "koszulki",
-                    value: "shirts",
-                },
-                {
-                    label: "design",
-                    value: "design",
-                },
-            ],
+            title: "Tags",
+            to: "portfolioTag",
         }),
         defineImage({
             title: "Główne zdjęcie",
             name: "mainImage",
             validation: <T>(rule: RuleDef<T>) => rule.required(),
             options: {
-                hotspot: true
+                hotspot: true,
             },
             fields: [
                 defineDropDown({

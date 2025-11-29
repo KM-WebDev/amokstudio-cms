@@ -10,7 +10,7 @@ import { FaListUl } from "react-icons/fa";
 export const FormChoice = defineObject({
     title: "Pytanie wybór",
     name: "formChoice",
-    icon: () => <FaListUl />,
+    icon: FaListUl,
     fields: [
         defineSingleLine({
             title: "Pytanie",

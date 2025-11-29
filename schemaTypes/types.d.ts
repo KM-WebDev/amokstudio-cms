@@ -9,14 +9,16 @@ import {
     ImageOptions,
     MaybePreview,
     ObjectDefinition,
+    ReferenceTo,
+    ArrayOfType,
     StringDefinition,
     StringRule,
     TextDefinition,
+    IntrinsicTypeName,
     ValidationBuilder,
 } from "sanity";
 
 import { ColorDefinition } from "@sanity/color-input";
-import { SanityTypeString } from "./types";
 
 export type FieldProps = {
     title: string;
@@ -46,7 +48,7 @@ export type DropDownType = Omit<StringDefinition, "type" | "options"> & {
     options: string[];
 };
 
-export type ArrayOfType = Omit<
+export type ArrayOfElementType = Omit<
     ArrayDefinition & FieldDefinition,
     "type" | "of"
 > & {
@@ -77,7 +79,7 @@ export type MultiLineFieldProps = {
 } & FieldProps;
 
 export type ObjectArrayFieldProps = {
-    elementType: SanityTypeString | string;
+    elementType: IntrinsicTypeName | string;
 } & FieldProps;
 
 export type DocumentFieldProps = {
@@ -94,23 +96,9 @@ export type TagFielsProps = {
     tags: Tag[];
 } & FieldProps;
 
-export type SanityTypeString =
-    | "string"
-    | "number"
-    | "boolean"
-    | "object"
-    | "array"
-    | "block"
-    | "date"
-    | "datetime"
-    | "document"
-    | "file"
-    | "geopoint"
-    | "image"
-    | "reference"
-    | "crossDatasetReference"
-    | "globalDocumentReference"
-    | "slug"
-    | "text"
-    | "url"
-    | "email";
+export type ReferenceToProps = Omit<
+    ArrayDefinition & FieldDefinition,
+    "type" | "of"
+> & {
+    to: string | string[];
+};

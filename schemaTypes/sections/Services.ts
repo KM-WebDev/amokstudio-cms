@@ -2,6 +2,7 @@ import {
     defineArrayOfType,
     defineDocument,
     defineSingleLine,
+    defineMultiLine,
 } from "../definitions";
 
 export const Services = defineDocument({
@@ -12,7 +13,7 @@ export const Services = defineDocument({
             title: "Tytuł",
             name: "title",
         }),
-        defineSingleLine({
+        defineMultiLine({
             title: "Opis",
             name: "description",
         }),

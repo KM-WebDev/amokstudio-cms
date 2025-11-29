@@ -4,7 +4,7 @@ import { defineBool, defineObject, defineSingleLine } from "../definitions";
 export const FormBoolean = defineObject({
     title: "Pytanie Tak/Nie",
     name: "formBoolean",
-    icon: () => <FaCheck />,
+    icon: FaCheck,
     fields: [
         defineSingleLine({
             title: "Pytanie",

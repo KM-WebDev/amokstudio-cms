@@ -1,37 +1,37 @@
-import { PortfolioInfo } from "./sections/PortfolioInfo";
-import { SectionColor } from "./objects/SectionColor";
+import { FormBoolean } from "./objects/FormBoolean";
 import { FormChoice } from "./objects/FormChoice";
-import { Portfolio } from "./sections/Portfolio";
-import { Features } from "./sections/Features";
-import { Services } from "./sections/Services";
-import { Contact } from "./sections/Contact";
+import { FormQuestion } from "./objects/FormQuestion";
 import { Gallery } from "./objects/Gallery";
-import { Reviews } from "./sections/Reviews";
+import { PortfolioTag } from "./objects/PortfolioTag";
 import { Section } from "./objects/Section";
-import { About } from "./sections/About";
-import { Form } from "./sections/Form";
-import { Hero } from "./sections/Hero";
+import { SectionColor } from "./objects/SectionColor";
+import { AboutPages } from "./sections/AboutPages";
+import { ContactInfo } from "./sections/ContactInfo";
 import { CTA } from "./sections/CTA";
 import { FAQ } from "./sections/FAQ";
-import { FormQuestion } from "./objects/FormQuestion";
-import { FormBoolean } from "./objects/FormBoolean";
+import { Features } from "./sections/Features";
+import { Form } from "./sections/Form";
+import { PortfolioPages } from "./sections/PortfolioPages";
+import { PortfolioSlug } from "./sections/PortfolioSlug";
+import { Reviews } from "./sections/Reviews";
+import { Services } from "./sections/Services";
 
 export const schemaTypes = [
-    PortfolioInfo,
+    PortfolioPages,
+    PortfolioSlug,
+    PortfolioTag,
     SectionColor,
     FormQuestion,
     FormBoolean,
     FormChoice,
-    Portfolio,
+    AboutPages,
     Features,
     Services,
-    Contact,
+    ContactInfo,
     Gallery,
     Reviews,
     Section,
-    About,
     Form,
-    Hero,
     CTA,
     FAQ,
 ];
