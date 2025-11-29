@@ -1,20 +1,15 @@
 import {
     ArrayDefinition,
     ArrayRule,
-    BaseSchemaDefinition,
     BooleanDefinition,
     ConditionalProperty,
     FieldDefinition,
     ImageDefinition,
-    ImageOptions,
-    MaybePreview,
+    IntrinsicTypeName,
     ObjectDefinition,
-    ReferenceTo,
-    ArrayOfType,
     StringDefinition,
     StringRule,
     TextDefinition,
-    IntrinsicTypeName,
     ValidationBuilder,
 } from "sanity";
 
