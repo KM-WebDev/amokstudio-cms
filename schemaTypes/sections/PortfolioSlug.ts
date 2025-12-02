@@ -23,8 +23,8 @@ export const PortfolioSlug = defineOrderedDocument({
         }),
         defineSlug(),
         defineReferenceTo({
-            name: "tags",
             title: "Tags",
+            name: "tags",
             to: "portfolioTag",
         }),
         defineImage({
