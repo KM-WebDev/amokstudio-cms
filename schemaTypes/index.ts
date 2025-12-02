@@ -16,24 +16,28 @@ import { PortfolioSlug } from "./sections/PortfolioSlug";
 import { Reviews } from "./sections/Reviews";
 import { Services } from "./sections/Services";
 
-export const schemaTypes = [
-    PortfolioPages,
-    PortfolioSlug,
-    PortfolioTag,
-    SectionColor,
+export const schemaObjects = [
     FormQuestion,
     FormBoolean,
     FormChoice,
-    AboutPages,
-    Features,
-    Services,
-    ContactInfo,
     Gallery,
-    Reviews,
     Section,
-    Form,
+    SectionColor,
+];
+
+export const schemaSingletonDocuments = [
+    AboutPages,
+    ContactInfo,
     CTA,
     FAQ,
+    Features,
+    Form,
+    PortfolioPages,
+    Services,
 ];
+
+export const schemaOrderableDocuments = [Reviews, PortfolioSlug];
+
+export const schemaDocuments = [PortfolioTag];
 
 // Migrations: https://www.sanity.io/docs/content-lake/schema-and-content-migrations

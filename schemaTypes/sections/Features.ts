@@ -1,3 +1,4 @@
+import { MdPlusOne } from "react-icons/md";
 import {
     defineArrayOfType,
     defineDocument,
@@ -8,6 +9,7 @@ import {
 export const Features = defineDocument({
     title: "Features",
     name: "features",
+    icon: MdPlusOne,
     fields: [
         defineSingleLine({
             title: "Tytuł",

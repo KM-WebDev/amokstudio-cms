@@ -1,3 +1,4 @@
+import { FaQuestion } from "react-icons/fa";
 import {
     defineArrayOfType,
     defineDocument,
@@ -7,6 +8,7 @@ import {
 export const FAQ = defineDocument({
     title: "FAQ",
     name: "faq",
+    icon: FaQuestion,
     fields: [
         defineSingleLine({
             title: "Tytuł",

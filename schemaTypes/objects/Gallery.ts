@@ -1,3 +1,4 @@
+import { RiGalleryLine } from "react-icons/ri";
 import {
     defineArrayOf,
     defineDropDown,
@@ -8,6 +9,7 @@ import {
 export const Gallery = defineObject({
     title: "Galeria",
     name: "gallery",
+    icon: RiGalleryLine,
     fields: [
         defineArrayOf({
             title: " ",

@@ -3,77 +3,19 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { tags } from "sanity-plugin-tags-v4";
 import { structureTool } from "sanity/structure";
-import { schemaTypes } from "./schemaTypes";
-
-import { FaTag, FaTshirt, FaWpforms } from "react-icons/fa";
-import { FaQuestion } from "react-icons/fa6";
-import { GrGallery } from "react-icons/gr";
-import { LuContact, LuMegaphone } from "react-icons/lu";
-import { MdOutlineReviews, MdPlusOne } from "react-icons/md";
-import { RiContactsLine, RiInfoCardLine } from "react-icons/ri";
+import {
+    schemaDocuments,
+    schemaObjects,
+    schemaOrderableDocuments,
+    schemaSingletonDocuments,
+} from "./schemaTypes";
 
 import { colorInput } from "@sanity/color-input";
 import { Dataset } from "./env";
-import { createHashMap } from "./hashmap";
-
-import { groqdPlaygroundTool } from "groqd-playground";
 
 const devPlugins = process.env.NODE_ENV === "development" ? [visionTool()] : [];
 
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
-
-const singletonTypes = createHashMap({
-    aboutPages: {
-        title: "O mnie - Strony",
-        icon: RiInfoCardLine,
-    },
-    portfolioPages: {
-        title: "Portfolio - Strony",
-        icon: RiContactsLine,
-    },
-    services: {
-        title: "Usługi",
-        icon: FaTshirt,
-    },
-    features: {
-        title: "Features",
-        icon: MdPlusOne,
-    },
-    faq: {
-        title: "FAQ",
-        icon: FaQuestion,
-    },
-    cta: {
-        title: "CTA",
-        icon: LuMegaphone,
-    },
-    form: {
-        title: "Formularz",
-        icon: FaWpforms,
-    },
-    contactInfo: {
-        title: "Dane Kontaktowe",
-        icon: LuContact,
-    },
-});
-
-const orderableTypes = createHashMap({
-    portfolioSlug: {
-        title: "Portfolio",
-        icon: GrGallery,
-    },
-    reviews: {
-        title: "Opinie",
-        icon: MdOutlineReviews,
-    },
-});
-
-const documents = createHashMap({
-    portfolioTag: {
-        title: "Tagi dla Portfolio",
-        icon: FaTag,
-    },
-});
 
 export default defineConfig({
     name: "default",
@@ -87,57 +29,71 @@ export default defineConfig({
                 S.list()
                     .title("Content")
                     .items([
-                        ...Object.entries(orderableTypes.data).map(
-                            ([key, value]) =>
-                                orderableDocumentListDeskItem({
-                                    title: value.title,
-                                    type: key,
-                                    S,
-                                    context,
-                                    icon: value.icon,
-                                })
+                        ...schemaOrderableDocuments.map((document) =>
+                            orderableDocumentListDeskItem({
+                                title: document.title,
+                                type: document.name,
+                                S,
+                                context,
+                                icon:
+                                    typeof document.icon === "function"
+                                        ? document.icon
+                                        : undefined,
+                            })
                         ),
-                        ...Object.entries(singletonTypes.data).map(
-                            ([key, value]) =>
-                                S.listItem()
-                                    .title(value.title)
-                                    .id(key)
-                                    .child(
-                                        S.document()
-                                            .schemaType(key)
-                                            .documentId(key)
-                                    )
-                                    .icon(value.icon)
-                        ),
-                        ...Object.entries(documents.data).map(([key, value]) =>
+                        ...schemaSingletonDocuments.map((document) => {
+                            const item = S.listItem()
+                                .title(document.title ?? "<Untitled>")
+                                .id(document.name)
+                                .child(
+                                    S.document()
+                                        .schemaType(document.name)
+                                        .documentId(document.name)
+                                );
+                            return typeof document.icon === "function"
+                                ? item.icon(document.icon)
+                                : item;
+                        }),
+                        ...schemaDocuments.map((document) =>
                             S.listItem()
-                                .title(value.title)
-                                .id(key)
-                                .child(S.documentTypeList(key))
-                                .icon(value.icon)
+                                .title(document.title ?? "<Untitled>")
+                                .id(document.name)
+                                .child(S.documentTypeList(document.name))
                         ),
                     ]),
         }),
         ...devPlugins,
         colorInput(),
         tags(),
-        groqdPlaygroundTool(),
     ],
 
     schema: {
-        types: schemaTypes,
-        templates: (templates) =>
-            templates.filter(
-                ({ schemaType }) => !singletonTypes.has(schemaType)
-            ),
+        types: [
+            ...schemaDocuments,
+            ...schemaOrderableDocuments,
+            ...schemaSingletonDocuments,
+            ...schemaObjects,
+        ],
+        templates: (templates) => {
+            const singletonTypeNames = new Set(
+                schemaSingletonDocuments.map((doc) => doc.name)
+            );
+            return templates.filter(
+                ({ schemaType }) => !singletonTypeNames.has(schemaType)
+            );
+        },
     },
 
     document: {
-        actions: (input, context) =>
-            singletonTypes.has(context.schemaType)
+        actions: (input, context) => {
+            const singletonTypeNames = new Set(
+                schemaSingletonDocuments.map((doc) => doc.name)
+            );
+            return singletonTypeNames.has(context.schemaType)
                 ? input.filter(
                       ({ action }) => action && singletonActions.has(action)
                   )
-                : input,
+                : input;
+        },
     },
 });

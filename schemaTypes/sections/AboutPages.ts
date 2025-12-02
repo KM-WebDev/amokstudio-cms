@@ -1,3 +1,4 @@
+import { RiInfoCardLine } from "react-icons/ri";
 import { ALL_FIELDS_GROUP } from "sanity";
 import {
     defineDocument,
@@ -9,6 +10,7 @@ import {
 export const AboutPages = defineDocument({
     title: "O mnie",
     name: "aboutPages",
+    icon: RiInfoCardLine,
     groups: [
         {
             name: "short",

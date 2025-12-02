@@ -17,18 +17,19 @@
   "dependencies": {
     "@sanity/color-input": "^4.0.6",
     "@sanity/orderable-document-list": "^1.4.0",
+    "@sanity/ui": "^3.1.11",
     "@sanity/vision": "^4.19.0",
     "@sanity/visual-editing": "^4.0.2",
     "@sindresorhus/slugify": "^3.0.0",
     "dotenv": "^17.2.3",
-    "groqd-playground": "^0.0.20",
     "prettier": "^3.6.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
     "sanity": "^4.19.0",
     "sanity-plugin-tags-v4": "^1.0.3",
-    "styled-components": "^6.1.18"
+    "styled-components": "^6.1.18",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^5.0.2",

@@ -1,13 +1,15 @@
+import { FaTshirt } from "react-icons/fa";
 import {
     defineArrayOfType,
     defineDocument,
-    defineSingleLine,
     defineMultiLine,
+    defineSingleLine,
 } from "../definitions";
 
 export const Services = defineDocument({
     title: "Usługi",
     name: "services",
+    icon: FaTshirt,
     fields: [
         defineSingleLine({
             title: "Tytuł",

@@ -1,3 +1,4 @@
+import { GrGallery } from "react-icons/gr";
 import { defineField, RuleDef } from "sanity";
 import {
     defineArrayOfType,
@@ -13,6 +14,7 @@ import {
 export const PortfolioSlug = defineOrderedDocument({
     title: "Portfolio",
     name: "portfolioSlug",
+    icon: GrGallery,
     fields: [
         defineSingleLine({
             title: "Tytuł",

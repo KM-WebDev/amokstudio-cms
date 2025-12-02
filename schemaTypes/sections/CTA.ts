@@ -1,3 +1,4 @@
+import { LuMegaphone } from "react-icons/lu";
 import {
     defineDocument,
     defineMultiLine,
@@ -7,6 +8,7 @@ import {
 export const CTA = defineDocument({
     title: "Wezwanie do działania",
     name: "cta",
+    icon: LuMegaphone,
     fields: [
         defineSingleLine({
             title: "Tytuł",

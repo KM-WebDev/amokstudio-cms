@@ -1,3 +1,4 @@
+import { RiContactsLine } from "react-icons/ri";
 import { ALL_FIELDS_GROUP } from "sanity";
 import {
     defineMultiLine,
@@ -8,6 +9,7 @@ import {
 export const PortfolioPages = defineObject({
     title: "Portfolio",
     name: "portfolioPages",
+    icon: RiContactsLine,
     groups: [
         {
             name: "short",

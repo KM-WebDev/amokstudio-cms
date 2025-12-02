@@ -1,3 +1,4 @@
+import { BsSignIntersectionY } from "react-icons/bs";
 import {
     defineColorPicker,
     defineMultiLine,
@@ -8,6 +9,7 @@ import {
 export const SectionColor = defineObject({
     title: "Sekcja",
     name: "sectionColor",
+    icon: BsSignIntersectionY,
     fields: [
         defineSingleLine({
             title: "Tytuł",

@@ -1,99 +1,56 @@
 import {
     ArrayDefinition,
-    ArrayRule,
     BooleanDefinition,
-    ConditionalProperty,
     FieldDefinition,
     ImageDefinition,
-    IntrinsicTypeName,
     ObjectDefinition,
     StringDefinition,
-    StringRule,
     TextDefinition,
-    ValidationBuilder,
 } from "sanity";
 
 import { ColorDefinition } from "@sanity/color-input";
 
-export type FieldProps = {
-    title: string;
-    name: string;
-    description?: string;
-    fields?: FieldDefinition[];
-    hidden?: ConditionalProperty;
-    group?: string | string[];
-};
+type Prettify<T> = {
+    [K in keyof T]: T[K];
+} & {};
 
-export type ObjectType = Omit<ObjectDefinition & FieldDefinition, "type">;
-export type StringType = Omit<StringDefinition & FieldDefinition, "type">;
-export type ImageType = Omit<ImageDefinition & FieldDefinition, "type">;
-export type ColorType = Omit<ColorDefinition & FieldDefinition, "type">;
-export type BoolType = Omit<BooleanDefinition & FieldDefinition, "type">;
-export type TextType = Omit<TextDefinition & FieldDefinition, "type">;
-export type RichType = Omit<ArrayDefinition & FieldDefinition, "type" | "of">;
+type ObjectType = Omit<ObjectDefinition & FieldDefinition, "type">;
+type StringType = Omit<StringDefinition & FieldDefinition, "type">;
+type ImageType = Omit<ImageDefinition & FieldDefinition, "type">;
+type ColorType = Omit<ColorDefinition & FieldDefinition, "type">;
+type BoolType = Omit<BooleanDefinition & FieldDefinition, "type">;
+type TextType = Omit<TextDefinition & FieldDefinition, "type">;
+type RichType = Omit<ArrayDefinition & FieldDefinition, "type" | "of">;
 
-export type ArrayType = Omit<
-    ArrayDefinition & FieldDefinition,
-    "type" | "of"
-> & {
-    fields: FieldDefinition[];
-};
+type ArrayType = Prettify<
+    Omit<ArrayDefinition & FieldDefinition, "type" | "of"> & {
+        fields: FieldDefinition[];
+    }
+>;
 
-export type DropDownType = Omit<StringDefinition, "type" | "options"> & {
+type DropDownType = Omit<StringDefinition, "type" | "options"> & {
     options: string[];
 };
 
-export type ArrayOfElementType = Omit<
+type ArrayOfElementType = Omit<
     ArrayDefinition & FieldDefinition,
     "type" | "of"
 > & {
     elementType: string;
 };
 
-export type TagType = Omit<FieldDefinition, "type" | "tags"> & {
+type TagType = Omit<FieldDefinition, "type" | "tags"> & {
     tags: Tag[];
 };
 
-export type Tag = {
+type Tag = {
     label: string;
     value: string;
 };
 
-export type ImageFieldProps = {
-    initialValue?: InitialValueProperty<any, ImageValue>;
-    validation?: ValidationBuilder<ImageRule, ImageValue>;
-} & FieldProps;
-
-export type SingleLineFieldProps = {
-    validation?: ValidationBuilder<StringRule, string>;
-    initialValue?: InitialValueProperty<any, string>;
-} & FieldProps;
-
-export type MultiLineFieldProps = {
-    validation?: ValidationBuilder<ArrayRule<unknown[]>, unknown[]>;
-} & FieldProps;
-
-export type ObjectArrayFieldProps = {
-    elementType: IntrinsicTypeName | string;
-} & FieldProps;
-
-export type DocumentFieldProps = {
-    groups?: FieldGroupDefinition[];
-} & FieldProps;
-
-export type DropDownFieldProps = {
-    options: string[];
-    initialValue: InitialValueProperty<any, string>;
-    readOnly?: boolean;
-} & FieldProps;
-
-export type TagFielsProps = {
-    tags: Tag[];
-} & FieldProps;
-
-export type ReferenceToProps = Omit<
+type ReferenceToProps = Omit<
     ArrayDefinition & FieldDefinition,
     "type" | "of"
 > & {
-    to: string | string[];
+    to: string;
 };

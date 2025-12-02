@@ -1,3 +1,4 @@
+import { MdOutlineReviews } from "react-icons/md";
 import {
     defineDropDown,
     defineImage,
@@ -9,6 +10,7 @@ import {
 export const Reviews = defineOrderedDocument({
     title: "Opinie",
     name: "reviews",
+    icon: MdOutlineReviews,
     fields: [
         defineSingleLine({
             title: "Imie autora opinii",

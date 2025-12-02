@@ -1,16 +1,16 @@
 import {
-    ObjectType,
-    StringType,
-    ImageType,
-    ArrayType,
-    DropDownType,
-    ColorType,
-    TagType,
     ArrayOfElementType,
+    ArrayType,
     BoolType,
-    TextType,
+    ColorType,
+    DropDownType,
+    ImageType,
+    ObjectType,
     ReferenceToProps,
     RichType,
+    StringType,
+    TagType,
+    TextType,
 } from "./types";
 
 import {
@@ -18,9 +18,15 @@ import {
     orderRankOrdering,
 } from "@sanity/orderable-document-list";
 
-import { defineField, defineType, FieldDefinition } from "sanity";
+import {
+    ArrayOfObjectsInputProps,
+    defineField,
+    defineType,
+    FieldDefinition,
+} from "sanity";
 
 import AutoSlugInput from "../components/AutoSlugInput";
+import TagsReferenceInput from "../components/TagsReferenceInput";
 
 export function defineOrderedDocument({ fields, ...rest }: ObjectType) {
     return defineType({
@@ -155,15 +161,26 @@ export function defineArrayOfType({
     return defineField({
         ...rest,
         type: "array",
-        of: [{ type: elementType }],
+        of: [defineField({ name: "", type: elementType })],
     });
 }
 
 export function defineReferenceTo({ to, ...rest }: ReferenceToProps) {
-    const toArray = Array.isArray(to) ? to : [to];
     return defineField({
         ...rest,
         type: "array",
-        of: [{ type: "reference", to: toArray.map((t) => ({ type: t })) }],
+        components: {
+            input: (props: ArrayOfObjectsInputProps) => (
+                <TagsReferenceInput {...props} documentType={to} />
+            ),
+        },
+        of: [
+            defineField({
+                name: "",
+                type: "reference",
+                to: [{ type: to }],
+                options: { disableNew: true },
+            }),
+        ],
     });
 }

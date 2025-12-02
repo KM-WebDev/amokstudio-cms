@@ -1,3 +1,4 @@
+import { LuContact } from "react-icons/lu";
 import {
     defineArrayOfType,
     defineDocument,
@@ -7,6 +8,7 @@ import {
 export const ContactInfo = defineDocument({
     title: "Dane Kontaktowe",
     name: "contactInfo",
+    icon: LuContact,
     fields: [
         defineSingleLine({
             title: "Tytuł",

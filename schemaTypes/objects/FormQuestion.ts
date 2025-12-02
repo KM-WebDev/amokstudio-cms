@@ -1,6 +1,5 @@
-import { defineBool, defineObject, defineSingleLine } from "../definitions";
-
 import { FaQuestion } from "react-icons/fa6";
+import { defineBool, defineObject, defineSingleLine } from "../definitions";
 
 export const FormQuestion = defineObject({
     title: "Pytanie otwarte",

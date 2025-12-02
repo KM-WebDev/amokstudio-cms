@@ -1,3 +1,4 @@
+import { FaWpforms } from "react-icons/fa";
 import { defineField } from "sanity";
 import {
     defineArrayOf,
@@ -8,6 +9,7 @@ import {
 export const Form = defineDocument({
     title: "Formularz",
     name: "form",
+    icon: FaWpforms,
     fields: [
         defineSingleLine({
             title: "Tytuł",

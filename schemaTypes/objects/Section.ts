@@ -1,3 +1,4 @@
+import { BsSignIntersectionT } from "react-icons/bs";
 import {
     defineMultiLine,
     defineObject,
@@ -7,6 +8,7 @@ import {
 export const Section = defineObject({
     title: "Sekcja",
     name: "section",
+    icon: BsSignIntersectionT,
     fields: [
         defineSingleLine({
             title: "Nagłówek",

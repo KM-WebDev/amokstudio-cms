@@ -1,12 +1,17 @@
-import { PatchEvent, set, type SlugInputProps, type FormPatch } from "sanity";
 import { useEffect, useRef, useState } from "react";
-import { useFormValue } from "sanity";
+import {
+    PatchEvent,
+    set,
+    useFormValue,
+    type FormPatch,
+    type SlugInputProps,
+} from "sanity";
 
 import slugify from "@sindresorhus/slugify";
 
 export default function AutoSlugInput(props: SlugInputProps) {
     const { onChange, renderDefault } = props;
-    const title = useFormValue(["title"]) as string | undefined; // Trust me bro!
+    const title = useFormValue(["title"]) as string; // Trust me bro!
 
     const prevTitleRef = useRef(title);
     const [touched, setTouched] = useState(false);
