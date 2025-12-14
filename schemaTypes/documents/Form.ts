@@ -1,20 +1,15 @@
-import { FaWpforms } from "react-icons/fa";
+import { Form as FormIcon } from "lucide-react";
 import { defineField } from "sanity";
 import {
     defineArrayOf,
-    defineDocument,
-    defineSingleLine,
+    defineSingletonDocument,
 } from "../definitions";
 
-export const Form = defineDocument({
+export const Form = defineSingletonDocument({
     title: "Formularz",
     name: "form",
-    icon: FaWpforms,
+    icon: FormIcon,
     fields: [
-        defineSingleLine({
-            title: "Tytuł",
-            name: "title",
-        }),
         defineArrayOf({
             title: "Pytania",
             name: "inputs",

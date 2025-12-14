@@ -4,12 +4,11 @@ import {
     BoolType,
     ColorType,
     DropDownType,
+    IconType,
     ImageType,
     ObjectType,
     ReferenceToProps,
-    RichType,
     StringType,
-    TagType,
     TextType,
 } from "./types";
 
@@ -26,7 +25,10 @@ import {
 } from "sanity";
 
 import AutoSlugInput from "../components/AutoSlugInput";
+import { IconPicker } from "../components/IconPicker";
 import TagsReferenceInput from "../components/TagsReferenceInput";
+
+export const Aspects = ["3:4", "square", "16:9", "panorama", "auto"] as const;
 
 export function defineOrderedDocument({ fields, ...rest }: ObjectType) {
     return defineType({
@@ -34,6 +36,43 @@ export function defineOrderedDocument({ fields, ...rest }: ObjectType) {
         type: "document",
         orderings: [orderRankOrdering],
         fields: [...fields, orderRankField({ type: "category", hidden: true })],
+        preview: {
+            select: { title: "title.pl", media: "mainImage" },
+            prepare({ title, media }) {
+                return {
+                    media: media,
+                    title: title,
+                };
+            },
+        },
+    });
+}
+
+export function defineSingletonDocument({ fields, ...rest }: ObjectType) {
+    return defineType({
+        ...rest,
+        fields: [
+            // DO NOT CHANGE THE NAME OF THIS FIELD OR REMOVE IT!
+            defineField({
+                title: "Title",
+                name: "title",
+                type: "string",
+                initialValue: rest.title,
+                components: {
+                    field: () => null,
+                },
+                hidden: false,
+            }),
+            ...fields,
+        ],
+        type: "document",
+        preview: {
+            prepare() {
+                return {
+                    title: rest.title,
+                };
+            },
+        },
     });
 }
 
@@ -58,7 +97,14 @@ export function defineColorPicker(props: ColorType) {
     }) as FieldDefinition<"color">; // Otherwise linter complains...
 }
 
-export function defineSingleLine(props: StringType) {
+export function defineLocalizedString(props: StringType) {
+    return defineField({
+        ...props,
+        type: "localizedString",
+    });
+}
+
+export function defineString(props: StringType) {
     return defineField({
         ...props,
         type: "string",
@@ -80,19 +126,48 @@ export function defineDropDown({ options, ...rest }: DropDownType) {
     });
 }
 
-export function defineImage(props: ImageType) {
-    props.fields = [
-        defineSingleLine({
-            title: "Tekst alternatywny",
-            name: "alt",
-            description: "Important for accessibility and SEO",
-        }),
-        ...(props.fields || []),
-    ];
-
+export function defineImage({
+    allowAspect,
+    initialAspect,
+    fields,
+    ...rest
+}: ImageType) {
     return defineField({
-        ...props,
+        ...rest,
+        fields: [
+            defineLocalizedString({
+                title: "Tekst alternatywny",
+                name: "alt",
+                description: "Ważne dla dostępności i SEO",
+            }),
+            defineDropDown({
+                title: "Proporcje zdjęcia",
+                name: "aspect",
+                // Can't have immutable array in mutable field, so map it is! This is fine.
+                options: Aspects.map((aspect) => aspect),
+                initialValue: initialAspect,
+                readOnly: true,
+
+                // readOnly: !allowAspect,
+            }),
+            ...(fields || []),
+        ],
+        options: {
+            hotspot: true,
+        },
         type: "image",
+        preview: {
+            select: {
+                alt: "alt.pl",
+                media: "asset",
+            },
+            prepare({ alt, media }) {
+                return {
+                    title: alt,
+                    media: media,
+                };
+            },
+        },
     });
 }
 
@@ -104,46 +179,36 @@ export function defineArrayOf({ fields, ...rest }: ArrayType) {
     });
 }
 
-export function defineTags({ tags, ...rest }: TagType) {
-    return defineField({
-        ...rest,
-        type: "tags",
-        options: {
-            predefinedTags: tags,
-        },
-    });
-}
-
-export function defineSlug() {
+export function defineSlug(gorup?: string) {
     return defineField({
         title: "Ścieżka",
         description:
             "Ścieżka generowana jest automatycznie na podstawie tytułu",
         name: "slug",
         type: "slug",
+        group: gorup,
         readOnly: true,
         components: {
             input: AutoSlugInput,
         },
         options: {
-            source: "title",
+            source: "title.pl",
             maxLength: 96,
         },
     });
 }
 
-export function defineRichMultiLine(props: RichType) {
-    return defineField({
-        ...props,
-        type: "array",
-        of: [{ type: "block" }],
-    });
-}
-
-export function defineMultiLine(props: TextType) {
+export function defineText(props: TextType) {
     return defineField({
         ...props,
         type: "text",
+    });
+}
+
+export function defineLocalizedText(props: TextType) {
+    return defineField({
+        ...props,
+        type: "localizedText",
     });
 }
 
@@ -182,5 +247,16 @@ export function defineReferenceTo({ to, ...rest }: ReferenceToProps) {
                 options: { disableNew: true },
             }),
         ],
+    });
+}
+
+export function defineIcon(props: IconType) {
+    return defineField({
+        ...props,
+        type: "string",
+        description: "Łatwiejsze wyszukiwanie na: https://lucide.dev/icons/",
+        components: {
+            input: IconPicker,
+        },
     });
 }

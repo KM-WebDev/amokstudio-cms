@@ -1,20 +1,19 @@
-import { LuContact } from "react-icons/lu";
 import {
     defineArrayOfType,
-    defineDocument,
-    defineSingleLine,
+    defineSingletonDocument,
+    defineLocalizedString,
+    defineString,
 } from "../definitions";
+import { Contact } from "lucide-react";
 
-export const ContactInfo = defineDocument({
-    title: "Dane Kontaktowe",
-    name: "contactInfo",
-    icon: LuContact,
+export const Footer = defineSingletonDocument({
+    title: "Stopka",
+    name: "footer",
+    icon: Contact,
     fields: [
-        defineSingleLine({
-            title: "Tytuł",
-            name: "title",
-            hidden: true,
-            initialValue: "Dane Kontaktowe",
+        defineLocalizedString({
+            title: "Nagłówek drugiej kolumny w stopce",
+            name: "footerContactHeading",
         }),
         defineArrayOfType({
             title: "Email",
@@ -31,7 +30,7 @@ export const ContactInfo = defineDocument({
             name: "socials",
             elementType: "string",
         }),
-        defineSingleLine({
+        defineString({
             title: "Lokalizacja",
             name: "location",
         }),

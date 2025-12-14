@@ -1,15 +1,10 @@
-import { RiGalleryLine } from "react-icons/ri";
-import {
-    defineArrayOf,
-    defineDropDown,
-    defineImage,
-    defineObject,
-} from "../definitions";
+import { Images } from "lucide-react";
+import { defineArrayOf, defineImage, defineObject } from "../definitions";
 
 export const Gallery = defineObject({
     title: "Galeria",
     name: "gallery",
-    icon: RiGalleryLine,
+    icon: Images,
     fields: [
         defineArrayOf({
             title: " ",
@@ -18,20 +13,8 @@ export const Gallery = defineObject({
                 defineImage({
                     title: "Zdjęcie",
                     name: "image",
-                    fields: [
-                        defineDropDown({
-                            title: "Proporcje zdjęcia",
-                            name: "aspect",
-                            options: [
-                                "3:4",
-                                "square",
-                                "16:9",
-                                "panorama",
-                                "auto",
-                            ],
-                            initialValue: "auto",
-                        }),
-                    ],
+                    initialAspect: "auto",
+                    allowAspect: true,
                 }),
             ],
         }),

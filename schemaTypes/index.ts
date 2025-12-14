@@ -1,43 +1,130 @@
+import type { DocumentDefinition, ObjectDefinition } from "sanity";
+import { AboutCTA } from "./documents/about/AboutCTA";
+import { AboutHero } from "./documents/about/AboutHero";
+import { AboutPage } from "./documents/about/AboutPage";
+import { AboutStats } from "./documents/about/AboutStats";
+import { AboutTeam } from "./documents/about/AboutTeam";
+import { AboutTestimonials } from "./documents/about/AboutTestimonials";
+import { AboutValues } from "./documents/about/AboutValues";
+import { Footer } from "./documents/Footer";
+import { Form } from "./documents/Form";
+import { HomeAbout } from "./documents/home/HomeAbout";
+import { HomeCTA } from "./documents/home/HomeCTA";
+import { HomeHero } from "./documents/home/HomeHero";
+import { HomePortfolio } from "./documents/home/HomePortfolio";
+import { HomeReviews } from "./documents/home/HomeReviews";
+import { HomeServices } from "./documents/home/HomeServices";
+import { HomeSteps } from "./documents/home/HomeSteps";
+import { Navigation } from "./documents/Navigation";
+import { OfferBenefits } from "./documents/offer/OfferBenefits";
+import { OfferCTA } from "./documents/offer/OfferCTA";
+import { OfferPage } from "./documents/offer/OfferPage";
+import { OfferServices } from "./documents/offer/OfferServices";
+import { ProcessTimeline } from "./documents/offer/OfferTimeline";
+import { PortfolioCTA } from "./documents/portfolio/PortfolioCTA";
+import { PortfolioPage } from "./documents/portfolio/PortfolioPage";
+import { PortfolioSlug } from "./documents/PortfolioSlug";
+import { PortfolioTag } from "./documents/PortfolioTag";
+import { ProcessCTA } from "./documents/process/ProcessCTA";
+import { ProcessHero } from "./documents/process/ProcessHero";
+import { ProcessSteps } from "./documents/process/ProcessSteps";
+import { Capsule } from "./objects/Capsule";
+import { HCard } from "./objects/cards/HCard";
+import { ICard } from "./objects/cards/ICard";
+import { IHCard } from "./objects/cards/IHCard";
+import { IHHCard } from "./objects/cards/IHHCard";
+import { CTA } from "./objects/CTA";
 import { FormBoolean } from "./objects/FormBoolean";
 import { FormChoice } from "./objects/FormChoice";
 import { FormQuestion } from "./objects/FormQuestion";
+import { FormSingleChoice } from "./objects/FormSingleChoice";
 import { Gallery } from "./objects/Gallery";
-import { PortfolioTag } from "./objects/PortfolioTag";
+import { HeadingSection } from "./objects/HeadingSection";
+import { LocalizedString, LocalizedText } from "./objects/Localized";
+import { Member } from "./objects/Member";
+import { Review } from "./objects/Review";
 import { Section } from "./objects/Section";
-import { SectionColor } from "./objects/SectionColor";
-import { AboutPages } from "./sections/AboutPages";
-import { ContactInfo } from "./sections/ContactInfo";
-import { CTA } from "./sections/CTA";
-import { FAQ } from "./sections/FAQ";
-import { Features } from "./sections/Features";
-import { Form } from "./sections/Form";
-import { PortfolioPages } from "./sections/PortfolioPages";
-import { PortfolioSlug } from "./sections/PortfolioSlug";
-import { Reviews } from "./sections/Reviews";
-import { Services } from "./sections/Services";
+import { Testimonial } from "./objects/Testimonial";
 
-export const schemaObjects = [
-    FormQuestion,
-    FormBoolean,
-    FormChoice,
-    Gallery,
-    Section,
-    SectionColor,
-];
+export type Schema = {
+    pages: {
+        [key: string]: Page;
+    };
 
-export const schemaSingletonDocuments = [
-    AboutPages,
-    ContactInfo,
-    CTA,
-    FAQ,
-    Features,
-    Form,
-    PortfolioPages,
-    Services,
-];
+    objects: ObjectDefinition[];
+};
 
-export const schemaOrderableDocuments = [Reviews, PortfolioSlug];
+export type Page = {
+    title: string | null;
+    documents: DocumentDefinition[];
+};
 
-export const schemaDocuments = [PortfolioTag];
+export const schema: Schema = {
+    pages: {
+        home: {
+            title: "Strona główna",
+            documents: [
+                HomeHero,
+                HomeServices,
+                HomeAbout,
+                HomeSteps,
+                HomePortfolio,
+                HomeReviews,
+                HomeCTA,
+            ],
+        },
+        about: {
+            title: "O mnie",
+            documents: [
+                AboutHero,
+                AboutStats,
+                AboutPage,
+                AboutValues,
+                AboutTeam,
+                AboutTestimonials,
+                AboutCTA,
+            ],
+        },
+        portfolio: {
+            title: "Portfolio",
+            documents: [PortfolioPage, PortfolioCTA],
+        },
+        offer: {
+            title: "Oferta",
+            documents: [OfferPage, OfferServices, OfferBenefits, OfferCTA],
+        },
+        process: {
+            title: "Proces",
+            documents: [ProcessHero, ProcessSteps, ProcessTimeline, ProcessCTA],
+        },
+        lists: {
+            title: null,
+            documents: [PortfolioSlug, PortfolioTag],
+        },
+        singletons: {
+            title: null,
+            documents: [Navigation, Footer, Form],
+        },
+    },
 
-// Migrations: https://www.sanity.io/docs/content-lake/schema-and-content-migrations
+    objects: [
+        HCard,
+        ICard,
+        IHCard,
+        IHHCard,
+        Member,
+        Testimonial,
+        CTA,
+        Capsule,
+        Section,
+        HeadingSection,
+        Gallery,
+        Review,
+        LocalizedString,
+        LocalizedText,
+        FormQuestion,
+        FormChoice,
+        FormSingleChoice,
+        FormBoolean,
+    ],
+};
