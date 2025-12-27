@@ -6,8 +6,9 @@ import { AboutStats } from "./documents/about/AboutStats";
 import { AboutTeam } from "./documents/about/AboutTeam";
 import { AboutTestimonials } from "./documents/about/AboutTestimonials";
 import { AboutValues } from "./documents/about/AboutValues";
-import { Footer } from "./documents/Footer";
-import { Form } from "./documents/Form";
+import { ContactForm } from "./documents/contact/ContactForm";
+import { ContactHero } from "./documents/contact/ContactHero";
+import { ContactInfo } from "./documents/contact/ContactInfo";
 import { HomeAbout } from "./documents/home/HomeAbout";
 import { HomeCTA } from "./documents/home/HomeCTA";
 import { HomeHero } from "./documents/home/HomeHero";
@@ -20,19 +21,21 @@ import { OfferBenefits } from "./documents/offer/OfferBenefits";
 import { OfferCTA } from "./documents/offer/OfferCTA";
 import { OfferPage } from "./documents/offer/OfferPage";
 import { OfferServices } from "./documents/offer/OfferServices";
-import { ProcessTimeline } from "./documents/offer/OfferTimeline";
 import { PortfolioCTA } from "./documents/portfolio/PortfolioCTA";
 import { PortfolioPage } from "./documents/portfolio/PortfolioPage";
 import { PortfolioSlug } from "./documents/PortfolioSlug";
 import { PortfolioTag } from "./documents/PortfolioTag";
 import { ProcessCTA } from "./documents/process/ProcessCTA";
+import { ProcessFAQ } from "./documents/process/ProcessFAQ";
 import { ProcessHero } from "./documents/process/ProcessHero";
 import { ProcessSteps } from "./documents/process/ProcessSteps";
+import { ProcessTimeline } from "./documents/process/ProcessTimeline";
 import { Capsule } from "./objects/Capsule";
 import { HCard } from "./objects/cards/HCard";
 import { ICard } from "./objects/cards/ICard";
 import { IHCard } from "./objects/cards/IHCard";
 import { IHHCard } from "./objects/cards/IHHCard";
+import { IHLCard } from "./objects/cards/IHLCard";
 import { CTA } from "./objects/CTA";
 import { FormBoolean } from "./objects/FormBoolean";
 import { FormChoice } from "./objects/FormChoice";
@@ -95,7 +98,17 @@ export const schema: Schema = {
         },
         process: {
             title: "Proces",
-            documents: [ProcessHero, ProcessSteps, ProcessTimeline, ProcessCTA],
+            documents: [
+                ProcessHero,
+                ProcessSteps,
+                ProcessTimeline,
+                ProcessFAQ,
+                ProcessCTA,
+            ],
+        },
+        contact: {
+            title: "Kontakt",
+            documents: [ContactHero, ContactInfo, ContactForm],
         },
         lists: {
             title: null,
@@ -103,7 +116,7 @@ export const schema: Schema = {
         },
         singletons: {
             title: null,
-            documents: [Navigation, Footer, Form],
+            documents: [Navigation],
         },
     },
 
@@ -112,6 +125,7 @@ export const schema: Schema = {
         ICard,
         IHCard,
         IHHCard,
+        IHLCard,
         Member,
         Testimonial,
         CTA,

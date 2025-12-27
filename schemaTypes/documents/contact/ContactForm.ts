@@ -2,14 +2,19 @@ import { Form as FormIcon } from "lucide-react";
 import { defineField } from "sanity";
 import {
     defineArrayOf,
+    defineLocalizedString,
     defineSingletonDocument,
-} from "../definitions";
+} from "../../definitions";
 
-export const Form = defineSingletonDocument({
+export const ContactForm = defineSingletonDocument({
     title: "Formularz",
-    name: "form",
+    name: "contactForm",
     icon: FormIcon,
     fields: [
+        defineLocalizedString({
+            title: "Nagłówek",
+            name: "heading",
+        }),
         defineArrayOf({
             title: "Pytania",
             name: "inputs",

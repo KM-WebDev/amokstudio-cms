@@ -1,6 +1,6 @@
 import { NavigationIcon } from "lucide-react";
-import { defineSingletonDocument, defineLocalizedString } from "../definitions";
-import { ALL_FIELDS_GROUP } from "sanity";
+import { ALL_FIELDS_GROUP, defineField } from "sanity";
+import { defineLocalizedString, defineSingletonDocument } from "../definitions";
 
 export const Navigation = defineSingletonDocument({
     title: "Nawigacja",
@@ -8,12 +8,16 @@ export const Navigation = defineSingletonDocument({
     icon: NavigationIcon,
     groups: [
         {
-            name: "main",
             title: "Główna nawigacja",
+            name: "main",
         },
         {
-            name: "legal",
             title: "Reszta nawigacji",
+            name: "legal",
+        },
+        {
+            title: "Tytuły kolumn w stopce",
+            name: "footerTitles",
         },
         {
             ...ALL_FIELDS_GROUP,
@@ -21,11 +25,6 @@ export const Navigation = defineSingletonDocument({
         },
     ],
     fields: [
-        defineLocalizedString({
-            title: "Nagłówek pierwszej kolumny w stopce",
-            name: "footerNavigationHeading",
-            group: "main",
-        }),
         defineLocalizedString({
             title: "Strona Główna",
             name: "home",
@@ -61,11 +60,7 @@ export const Navigation = defineSingletonDocument({
             name: "startProject",
             group: "main",
         }),
-        defineLocalizedString({
-            title: "Nagłówek trzeciej kolumny w stopce",
-            name: "footerLegalHeading",
-            group: "legal",
-        }),
+
         defineLocalizedString({
             title: "Polityka Prywatności",
             name: "privacyPolicy",
@@ -74,6 +69,29 @@ export const Navigation = defineSingletonDocument({
         defineLocalizedString({
             title: "Warunki korzystania z usługi",
             name: "termsOfService",
+            group: "legal",
+        }),
+
+        defineLocalizedString({
+            title: "Nagłówek pierwszej kolumny w stopce",
+            name: "footerNavigationHeading",
+            group: "footerTitles",
+        }),
+
+        defineLocalizedString({
+            title: "Nagłówek drugiej kolumny w stopce",
+            name: "footerMiddleHeading",
+            group: "footerTitles",
+        }),
+        defineLocalizedString({
+            title: "Nagłówek trzeciej kolumny w stopce",
+            name: "footerLegalHeading",
+            group: "footerTitles",
+        }),
+        defineField({
+            title: "Plik polityki prywatności (PDF)",
+            name: "privacyPolicyFile",
+            type: "file",
             group: "legal",
         }),
     ],
