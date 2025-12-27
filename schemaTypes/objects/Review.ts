@@ -1,18 +1,16 @@
-import { MdOutlineReviews } from "react-icons/md";
 import {
-    defineDropDown,
+    defineObject,
+    defineString,
     defineImage,
-    defineMultiLine,
-    defineOrderedDocument,
-    defineSingleLine,
+    defineLocalizedText,
+    defineDropDown,
 } from "../definitions";
 
-export const Reviews = defineOrderedDocument({
-    title: "Opinie",
-    name: "reviews",
-    icon: MdOutlineReviews,
+export const Review = defineObject({
+    title: "Opinia",
+    name: "review",
     fields: [
-        defineSingleLine({
+        defineString({
             title: "Imie autora opinii",
             name: "author",
         }),
@@ -20,7 +18,7 @@ export const Reviews = defineOrderedDocument({
             title: "Zdjęcie autora opinii",
             name: "avatar",
         }),
-        defineMultiLine({
+        defineLocalizedText({
             title: "Zawartość opinii",
             name: "content",
         }),
@@ -30,7 +28,7 @@ export const Reviews = defineOrderedDocument({
             options: ["Google", "Facebook", "Inne"],
             initialValue: "Facebook",
         }),
-        defineSingleLine({
+        defineString({
             title: "Link do serwisu skąd pochodzi opinia",
             name: "sourceLink",
             hidden: ({ parent }) => parent.source !== "Inne",
@@ -42,4 +40,16 @@ export const Reviews = defineOrderedDocument({
             initialValue: "5",
         }),
     ],
+    preview: {
+        select: {
+            title: "author",
+            media: "avatar",
+        },
+        prepare(selection) {
+            return {
+                title: selection.title,
+                media: selection.media,
+            };
+        },
+    },
 });

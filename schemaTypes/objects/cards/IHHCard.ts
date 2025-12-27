@@ -1,0 +1,43 @@
+import { createCardPreview } from "../../../utils";
+import {
+    defineColorPicker,
+    defineIcon,
+    defineLocalizedString,
+    defineLocalizedText,
+    defineObject,
+} from "../../definitions";
+
+export const IHHCard = defineObject({
+    title: "Karta",
+    name: "ihhCard",
+    fields: [
+        defineIcon({
+            title: "Ikona",
+            name: "icon",
+        }),
+        defineLocalizedString({
+            title: "Nagłówek",
+            name: "heading",
+        }),
+        defineLocalizedString({
+            title: "Nagłówek 2",
+            name: "heading2",
+        }),
+        defineLocalizedText({
+            title: "Treść",
+            name: "content",
+        }),
+        defineColorPicker({
+            title: "Tło",
+            name: "background",
+        }),
+    ],
+    preview: {
+        select: {
+            title: "heading.pl",
+            iconName: "icon",
+            background: "background",
+        },
+        prepare: createCardPreview,
+    },
+});

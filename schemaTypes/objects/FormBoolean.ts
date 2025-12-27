@@ -1,12 +1,12 @@
-import { FaCheck } from "react-icons/fa";
-import { defineBool, defineObject, defineSingleLine } from "../definitions";
+import { defineBool, defineObject, defineLocalizedString } from "../definitions";
+import { Check } from "lucide-react";
 
 export const FormBoolean = defineObject({
     title: "Pytanie Tak/Nie",
     name: "formBoolean",
-    icon: FaCheck,
+    icon: Check,
     fields: [
-        defineSingleLine({
+        defineLocalizedString({
             title: "Pytanie",
             name: "question",
         }),
@@ -16,7 +16,7 @@ export const FormBoolean = defineObject({
         }),
     ],
     preview: {
-        select: { question: "question" },
+        select: { question: "question.pl" },
         prepare({ question }) {
             return { title: question };
         },

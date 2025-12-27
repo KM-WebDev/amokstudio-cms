@@ -1,12 +1,12 @@
-import { FaQuestion } from "react-icons/fa6";
-import { defineBool, defineObject, defineSingleLine } from "../definitions";
+import { defineBool, defineObject, defineLocalizedString } from "../definitions";
+import { CircleQuestionMark } from "lucide-react";
 
 export const FormQuestion = defineObject({
     title: "Pytanie otwarte",
     name: "formQuestion",
-    icon: FaQuestion,
+    icon: CircleQuestionMark,
     fields: [
-        defineSingleLine({
+        defineLocalizedString({
             title: "Pytanie",
             name: "question",
         }),
@@ -20,7 +20,7 @@ export const FormQuestion = defineObject({
         }),
     ],
     preview: {
-        select: { title: "question" },
+        select: { title: "question.pl" },
         prepare({ title }) {
             return { title: title };
         },

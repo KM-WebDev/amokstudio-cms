@@ -1,25 +1,25 @@
+import { List } from "lucide-react";
 import {
     defineArrayOfType,
     defineBool,
     defineObject,
-    defineSingleLine,
+    defineLocalizedString,
 } from "../definitions";
 
-import { FaListUl } from "react-icons/fa";
 
 export const FormChoice = defineObject({
     title: "Pytanie wybór",
     name: "formChoice",
-    icon: FaListUl,
+    icon: List,
     fields: [
-        defineSingleLine({
+        defineLocalizedString({
             title: "Pytanie",
             name: "question",
         }),
         defineArrayOfType({
             title: "Opcje",
             name: "choices",
-            elementType: "string",
+            elementType: "formSingleChoice",
         }),
         defineBool({
             title: "Wymagane",
@@ -31,23 +31,9 @@ export const FormChoice = defineObject({
         }),
     ],
     preview: {
-        select: { question: "question" },
+        select: { question: "question.pl" },
         prepare({ question }) {
             return { title: question };
         },
     },
-    // preview: {
-    //     select: { choices: "choices", title: "question" },
-    //     prepare(selection) {
-    //         const { title, choices } = selection;
-    //         return {
-    //             title:
-    //                 title +
-    //                 ": " +
-    //                 (Array.isArray(choices)
-    //                     ? choices.join(", ")
-    //                     : "Brak opcji"),
-    //         };
-    //     },
-    // },
 });
