@@ -1,48 +1,53 @@
 {
-  "name": "amokstudio",
-  "private": true,
-  "version": "1.0.0",
-  "main": "package.json",
-  "license": "UNLICENSED",
-  "scripts": {
-    "dev": "sanity dev",
-    "start": "sanity start",
-    "build": "sanity build",
-    "deploy": "sanity deploy",
-    "deploy-graphql": "sanity graphql deploy"
-  },
-  "keywords": [
-    "sanity"
-  ],
-  "dependencies": {
-    "@sanity/color-input": "^4.0.6",
-    "@sanity/document-internationalization": "^4.1.0",
-    "@sanity/migrate": "^4.21.1",
-    "@sanity/orderable-document-list": "^1.4.0",
-    "@sanity/ui": "^3.1.11",
-    "@sanity/vision": "^4.22.0",
-    "@sanity/visual-editing": "^4.0.2",
-    "@sindresorhus/slugify": "^3.0.0",
-    "dotenv": "^17.2.3",
-    "lucide-react": "^0.561.0",
-    "prettier": "^3.6.2",
-    "react": "^19.2.2",
-    "react-dom": "^19.2.2",
-    "sanity": "^4.22.0",
-    "sanity-plugin-tags-v4": "^1.0.3",
-    "styled-components": "^6.1.18",
-    "uuid": "^13.0.0"
-  },
-  "devDependencies": {
-    "@sanity/eslint-config-studio": "^5.0.2",
-    "@types/react": "^19.1",
-    "eslint": "^9.28",
-    "typescript": "^5.8"
-  },
-  "prettier": {
-    "semi": false,
-    "printWidth": 100,
-    "bracketSpacing": false,
-    "singleQuote": true
-  }
+    "name": "amokstudio",
+    "private": true,
+    "version": "1.0.0",
+    "main": "package.json",
+    "license": "UNLICENSED",
+    "scripts": {
+        "dev": "sanity dev",
+        "start": "sanity start",
+        "build": "sanity build",
+        "deploy": "sanity deploy",
+        "deploy-graphql": "sanity graphql deploy"
+    },
+    "keywords": [
+        "sanity"
+    ],
+    "dependencies": {
+        "@sanity/color-input": "^4.0.6",
+        "@sanity/document-internationalization": "^4.1.0",
+        "@sanity/migrate": "^4.21.1",
+        "@sanity/orderable-document-list": "^1.4.0",
+        "@sanity/ui": "^3.1.11",
+        "@sanity/vision": "^4.22.0",
+        "@sanity/visual-editing": "^4.0.2",
+        "@sindresorhus/slugify": "^3.0.0",
+        "dotenv": "^17.2.3",
+        "lucide-react": "^0.561.0",
+        "prettier": "^3.6.2",
+        "react": "^19.2.2",
+        "react-dom": "^19.2.2",
+        "sanity": "^4.22.0",
+        "sanity-plugin-tags-v4": "^1.0.3",
+        "styled-components": "^6.1.18",
+        "uuid": "^13.0.0"
+    },
+    "devDependencies": {
+        "@sanity/eslint-config-studio": "^5.0.2",
+        "@types/react": "^19.1",
+        "eslint": "^9.28",
+        "typescript": "^5.8"
+    },
+    "pnpm": {
+        "overrides": {
+            "lodash": ">=4.17.23"
+        }
+    },
+    "prettier": {
+        "semi": false,
+        "printWidth": 100,
+        "bracketSpacing": false,
+        "singleQuote": true
+    }
 }
