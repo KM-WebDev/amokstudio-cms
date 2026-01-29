@@ -42,7 +42,9 @@
     "pnpm": {
         "overrides": {
             "lodash": ">=4.17.23",
-            "lodash-es": ">=4.17.23"
+            "lodash-es": ">=4.17.23",
+            "undici": ">=6.23.0",
+            "prismjs": ">=1.30.0"
         }
     },
     "prettier": {
