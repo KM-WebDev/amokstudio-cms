@@ -5,7 +5,7 @@ import { v4 as uuid } from "uuid";
 
 interface Tag {
     _id: string;
-    name: string;
+    title: string;
 }
 
 interface ReferenceValue {
@@ -29,7 +29,7 @@ export default function TagsReferenceInput(props: TagsReferenceInputProps) {
         client
             .fetch<
                 Tag[]
-            >(`*[_type == "portfolioTag"] | order(name.pl asc){_id, "name": name.pl}`)
+            >(`*[_type == "portfolioTag"] | order(title.pl asc){_id, "title": title.pl}`)
             .then(setTags);
     }, [client]);
 
@@ -70,7 +70,7 @@ export default function TagsReferenceInput(props: TagsReferenceInputProps) {
                         tone={isSelected(tag) ? "primary" : "default"}
                         fontSize={1}
                         padding={2}
-                        text={tag.name}
+                        text={tag.title}
                         onClick={() => toggleTag(tag)}
                     />
                 ))}

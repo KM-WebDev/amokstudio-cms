@@ -230,7 +230,7 @@ export function defineArrayOfType({
     });
 }
 
-export function defineReferenceTo({ to, ...rest }: ReferenceToProps) {
+export function defineReferenceTo({ to, weak, ...rest }: ReferenceToProps) {
     return defineField({
         ...rest,
         type: "array",
@@ -245,6 +245,7 @@ export function defineReferenceTo({ to, ...rest }: ReferenceToProps) {
                 type: "reference",
                 to: [{ type: to }],
                 options: { disableNew: true },
+                weak: weak,
             }),
         ],
     });

@@ -62,4 +62,5 @@ type ReferenceToProps = Omit<
     "type" | "of"
 > & {
     to: string;
+    weak?: boolean;
 };
