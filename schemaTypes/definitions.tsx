@@ -140,16 +140,16 @@ export function defineImage({
                 name: "alt",
                 description: "Ważne dla dostępności i SEO",
             }),
-            defineDropDown({
-                title: "Proporcje zdjęcia",
-                name: "aspect",
-                // Can't have immutable array in mutable field, so map it is! This is fine.
-                options: Aspects.map((aspect) => aspect),
-                initialValue: initialAspect,
-                readOnly: true,
+            // defineDropDown({
+            //     title: "Proporcje zdjęcia",
+            //     name: "aspect",
+            //     // Can't have immutable array in mutable field, so map it is! This is fine.
+            //     options: Aspects.map((aspect) => aspect),
+            //     initialValue: initialAspect,
+            //     readOnly: true,
 
-                // readOnly: !allowAspect,
-            }),
+            //     // readOnly: !allowAspect,
+            // }),
             ...(fields || []),
         ],
         options: {
