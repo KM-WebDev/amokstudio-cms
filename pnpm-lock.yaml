@@ -6,6 +6,7 @@ settings:
 
 overrides:
   lodash: '>=4.17.23'
+  lodash-es: '>=4.17.23'
 
 importers:
 
@@ -4170,8 +4171,8 @@ packages:
     resolution: {integrity: sha512-XT9ewWAC43tiAV7xDAPflMkG0qOPn2QjHqlgX8FOqmWa/rxnyYDulF9T0F7tRy1u+TVTmK/M//6VIOye+2zDXg==}
     engines: {node: '>=20'}
 
-  lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+  lodash-es@4.17.23:
+    resolution: {integrity: sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==}
 
   lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
@@ -8234,7 +8235,7 @@ snapshots:
       '@sanity/diff-match-patch': 3.2.0
       hotscript: 1.0.13
       lodash: 4.17.23
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       mendoza: 3.0.8
       rxjs: 7.8.2
     optionalDependencies:
@@ -8398,7 +8399,7 @@ snapshots:
       '@sanity/mutate': 0.12.6(debug@4.4.3)
       '@sanity/types': 3.99.0(@types/react@19.2.7)(debug@4.4.3)
       groq: 3.88.1-typegen-experimental.0
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       reselect: 5.1.1
       rxjs: 7.8.2
       zustand: 5.0.8(@types/react@19.2.7)(immer@11.0.1)(react@19.2.3)(use-sync-external-store@1.6.0(react@19.2.3))
@@ -10770,7 +10771,7 @@ snapshots:
     dependencies:
       p-locate: 6.0.0
 
-  lodash-es@4.17.21: {}
+  lodash-es@4.17.23: {}
 
   lodash.debounce@4.0.8: {}
 
@@ -11395,7 +11396,7 @@ snapshots:
     dependencies:
       '@icons/material': 0.2.4(react@19.2.3)
       lodash: 4.17.23
-      lodash-es: 4.17.21
+      lodash-es: 4.17.23
       material-colors: 1.2.6
       prop-types: 15.8.1
       react: 19.2.3
