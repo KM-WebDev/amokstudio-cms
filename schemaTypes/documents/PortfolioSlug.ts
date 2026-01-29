@@ -50,6 +50,7 @@ export const PortfolioSlug = defineOrderedDocument({
             name: "tags",
             to: "portfolioTag",
             group: "main",
+            weak: true,
         }),
         defineLocalizedString({
             title: "Krótki opis",
@@ -96,7 +97,7 @@ export const PortfolioSlug = defineOrderedDocument({
             group: "content",
         }),
         defineArrayOfType({
-            title: "Wideo z Youtube",
+            title: "Link do wideo z Youtube",
             name: "youtubeVideos",
             elementType: "string",
             group: "content",

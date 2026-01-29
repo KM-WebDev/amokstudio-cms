@@ -11,7 +11,7 @@ export const PortfolioTag = defineOrderedDocument({
             name: "title",
             title: "Nazwa Taga",
             validation: <T>(rule: RuleDef<T>) =>
-                rule.custom(async (value, context) => {
+                rule.custom(async (value: any, context) => {
                     if (!value) return true;
 
                     const client = context.getClient({

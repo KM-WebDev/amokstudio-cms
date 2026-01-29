@@ -1,16 +1,21 @@
+import { UserStar } from "lucide-react";
 import {
     defineArrayOfType,
-    defineSingletonDocument,
+    defineImage,
     defineLocalizedString,
     defineLocalizedText,
+    defineSingletonDocument,
 } from "../../definitions";
-import { UserStar } from "lucide-react";
 
 export const HomeHero = defineSingletonDocument({
     title: "Hero",
     name: "homeHero",
     icon: UserStar,
     fields: [
+        defineImage({
+            title: "Zdjęcie Hero",
+            name: "heroImage",
+        }),
         defineLocalizedText({
             title: "Zawartość",
             name: "content",
