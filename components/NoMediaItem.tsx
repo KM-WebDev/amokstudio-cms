@@ -1,13 +1,14 @@
+import { Box } from "@sanity/ui";
 import React from "react";
 import type { ObjectItemProps } from "sanity";
-import { Box } from "@sanity/ui";
 
 export const NoMediaItem = (props: ObjectItemProps) => {
     const uniqueId = React.useId();
 
     return (
         <Box>
-            <style>{`
+            <style>
+                {`
                     #${uniqueId} [data-testid='Media'] {
                         display: none !important;
                         width: 0 !important;
@@ -16,7 +17,8 @@ export const NoMediaItem = (props: ObjectItemProps) => {
                     #${uniqueId} [data-ui='Text'] {
                         font-size: 15px !important;
                     }
-                `}</style>
+                `}
+            </style>
             <div id={uniqueId}>{props.renderDefault(props)}</div>
         </Box>
     );

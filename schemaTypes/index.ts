@@ -5,10 +5,12 @@ import { AboutPage } from "./documents/about/AboutPage";
 import { AboutStats } from "./documents/about/AboutStats";
 import { AboutTeam } from "./documents/about/AboutTeam";
 import { AboutTestimonials } from "./documents/about/AboutTestimonials";
+import { AboutTitle } from "./documents/about/AboutTitle";
 import { AboutValues } from "./documents/about/AboutValues";
 import { ContactForm } from "./documents/contact/ContactForm";
 import { ContactHero } from "./documents/contact/ContactHero";
 import { ContactInfo } from "./documents/contact/ContactInfo";
+import { ContactTitle } from "./documents/contact/ContactTitle";
 import { HomeAbout } from "./documents/home/HomeAbout";
 import { HomeCTA } from "./documents/home/HomeCTA";
 import { HomeHero } from "./documents/home/HomeHero";
@@ -16,13 +18,15 @@ import { HomePortfolio } from "./documents/home/HomePortfolio";
 import { HomeReviews } from "./documents/home/HomeReviews";
 import { HomeServices } from "./documents/home/HomeServices";
 import { HomeSteps } from "./documents/home/HomeSteps";
+import { HomeTitle } from "./documents/home/HomeTitle";
 import { Navigation } from "./documents/Navigation";
 import { OfferBenefits } from "./documents/offer/OfferBenefits";
 import { OfferCTA } from "./documents/offer/OfferCTA";
-import { OfferPage } from "./documents/offer/OfferPage";
 import { OfferServices } from "./documents/offer/OfferServices";
+import { OfferTitle } from "./documents/offer/OfferTitle";
 import { PortfolioCTA } from "./documents/portfolio/PortfolioCTA";
 import { PortfolioPage } from "./documents/portfolio/PortfolioPage";
+import { PortfolioTitle } from "./documents/portfolio/PortfolioTitle";
 import { PortfolioSlug } from "./documents/PortfolioSlug";
 import { PortfolioTag } from "./documents/PortfolioTag";
 import { ProcessCTA } from "./documents/process/ProcessCTA";
@@ -30,6 +34,7 @@ import { ProcessFAQ } from "./documents/process/ProcessFAQ";
 import { ProcessHero } from "./documents/process/ProcessHero";
 import { ProcessSteps } from "./documents/process/ProcessSteps";
 import { ProcessTimeline } from "./documents/process/ProcessTimeline";
+import { ProcessTitle } from "./documents/process/ProcessTitle";
 import { Capsule } from "./objects/Capsule";
 import { HCard } from "./objects/cards/HCard";
 import { ICard } from "./objects/cards/ICard";
@@ -67,6 +72,7 @@ export const schema: Schema = {
         home: {
             title: "Strona główna",
             documents: [
+                HomeTitle,
                 HomeHero,
                 HomeServices,
                 HomeAbout,
@@ -79,6 +85,7 @@ export const schema: Schema = {
         about: {
             title: "O mnie",
             documents: [
+                AboutTitle,
                 AboutHero,
                 AboutStats,
                 AboutPage,
@@ -90,15 +97,16 @@ export const schema: Schema = {
         },
         portfolio: {
             title: "Portfolio",
-            documents: [PortfolioPage, PortfolioCTA],
+            documents: [PortfolioTitle, PortfolioPage, PortfolioCTA],
         },
         offer: {
             title: "Oferta",
-            documents: [OfferPage, OfferServices, OfferBenefits, OfferCTA],
+            documents: [OfferTitle, OfferServices, OfferBenefits, OfferCTA],
         },
         process: {
             title: "Proces",
             documents: [
+                ProcessTitle,
                 ProcessHero,
                 ProcessSteps,
                 ProcessTimeline,
@@ -108,7 +116,7 @@ export const schema: Schema = {
         },
         contact: {
             title: "Kontakt",
-            documents: [ContactHero, ContactInfo, ContactForm],
+            documents: [ContactTitle, ContactHero, ContactInfo, ContactForm],
         },
         lists: {
             title: null,

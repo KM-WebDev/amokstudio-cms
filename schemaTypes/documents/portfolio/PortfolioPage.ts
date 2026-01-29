@@ -26,12 +26,12 @@ export const PortfolioPage = defineSingletonDocument({
     ],
     fields: [
         defineLocalizedString({
-            title: "Nagłówek strony",
+            title: "Nagłówek",
             name: "heading",
             group: "page",
         }),
         defineLocalizedText({
-            title: "Opis strony",
+            title: "Opis",
             name: "content",
             group: "page",
         }),
