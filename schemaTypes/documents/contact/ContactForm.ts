@@ -34,6 +34,11 @@ export const ContactForm = defineSingletonDocument({
                     name: "formBoolean",
                     type: "formBoolean",
                 }),
+                defineField({
+                    title: "Pytanie Email",
+                    name: "formEmail",
+                    type: "formEmail",
+                }),
             ],
         }),
     ],

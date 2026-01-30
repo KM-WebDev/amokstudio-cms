@@ -91,6 +91,28 @@ function deskStructure(S: StructureBuilder, context: ConfigContext) {
         ]);
 }
 
+// Get all singleton document names
+const getSingletonTypeNames = () => {
+    const singletons = new Set<string>();
+    Object.values(schema.pages).forEach((page) => {
+        page.documents.forEach((doc) => {
+            // Check if it's a singleton (has the hidden title field)
+            const hasHiddenTitle =
+                Array.isArray(doc?.fields) &&
+                doc.fields.some(
+                    (f: FieldDefinition) =>
+                        f?.name === "title" &&
+                        f?.type === "string" &&
+                        f?.hidden === false
+                );
+            if (hasHiddenTitle && !isOrderable(doc)) {
+                singletons.add(doc.name);
+            }
+        });
+    });
+    return singletons;
+};
+
 export default defineConfig({
     name: "default",
     title: "amokstudio",
@@ -107,26 +129,22 @@ export default defineConfig({
             ...Object.values(schema.pages).flatMap((page) => page.documents),
             ...schema.objects,
         ],
-        // templates: (templates) => {
-        //     const singletonTypeNames = new Set(
-        //         schemaSingletonDocuments.map((doc) => doc.name)
-        //     );
-        //     return templates.filter(
-        //         ({ schemaType }) => !singletonTypeNames.has(schemaType)
-        //     );
-        // },
+        templates: (templates) => {
+            const singletonTypeNames = getSingletonTypeNames();
+            return templates.filter(
+                ({ schemaType }) => !singletonTypeNames.has(schemaType)
+            );
+        },
     },
 
-    // document: {
-    //     actions: (input, context) => {
-    //         const singletonTypeNames = new Set(
-    //             schemaSingletonDocuments.map((doc) => doc.name)
-    //         );
-    //         return singletonTypeNames.has(context.schemaType)
-    //             ? input.filter(
-    //                   ({ action }) => action && singletonActions.has(action)
-    //               )
-    //             : input;
-    //     },
-    // },
+    document: {
+        actions: (input, context) => {
+            const singletonTypeNames = getSingletonTypeNames();
+            return singletonTypeNames.has(context.schemaType)
+                ? input.filter(
+                      ({ action }) => action && singletonActions.has(action)
+                  )
+                : input;
+        },
+    },
 });
