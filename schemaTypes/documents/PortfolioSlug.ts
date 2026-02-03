@@ -55,6 +55,19 @@ export const PortfolioSlug = defineOrderedDocument({
         defineLocalizedString({
             title: "Krótki opis",
             name: "shortContent",
+            validation: <T>(rule: RuleDef<T>) =>
+                rule.custom(
+                    (value: { pl?: string; en?: string } | undefined) => {
+                        if (!value) return true;
+                        if (value.pl && value.pl.length > 200) {
+                            return "To pole może zawierać maksymalnie 200 znaków";
+                        }
+                        if (value.en && value.en.length > 200) {
+                            return "This field can contain a maximum of 200 characters";
+                        }
+                        return true;
+                    }
+                ),
             group: "main",
         }),
         defineBool({

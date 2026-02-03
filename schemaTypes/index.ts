@@ -44,6 +44,7 @@ import { IHLCard } from "./objects/cards/IHLCard";
 import { CTA } from "./objects/CTA";
 import { FormBoolean } from "./objects/FormBoolean";
 import { FormChoice } from "./objects/FormChoice";
+import { FormEmail } from "./objects/FormEmail";
 import { FormQuestion } from "./objects/FormQuestion";
 import { FormSingleChoice } from "./objects/FormSingleChoice";
 import { Gallery } from "./objects/Gallery";
@@ -148,5 +149,6 @@ export const schema: Schema = {
         FormChoice,
         FormSingleChoice,
         FormBoolean,
+        FormEmail,
     ],
 };

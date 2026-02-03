@@ -1,5 +1,6 @@
 import { Tag } from "lucide-react";
 import {
+    defineArrayOf,
     defineLocalizedString,
     defineLocalizedText,
     defineSingletonDocument,
@@ -16,7 +17,21 @@ export const HomeTitle = defineSingletonDocument({
         }),
         defineLocalizedText({
             name: "description",
-            title: "Opis Strony",
+            title: "Opis Strony widoczny dla wyszukiwarek",
+        }),
+        defineArrayOf({
+            name: "keywords",
+            title: "Słowa kluczowe",
+            fields: [
+                defineLocalizedString({
+                    name: "keyword",
+                    title: "Słowo kluczowe",
+                }),
+            ],
+        }),
+        defineLocalizedText({
+            name: "ogTitle",
+            title: "Tytuł udostępniania w mediach społecznościowych",
         }),
     ],
 });
