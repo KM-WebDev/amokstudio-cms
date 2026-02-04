@@ -1,8 +1,6 @@
 import { BadgeDollarSign } from "lucide-react";
 import {
     defineArrayOfType,
-    defineColorPicker,
-    defineIcon,
     defineImage,
     defineLocalizedString,
     defineLocalizedText,
@@ -31,21 +29,9 @@ export const OfferServices = defineOrderedDocument({
             title: "Obrazek",
             name: "mainImage",
         }),
-        defineIcon({
-            title: "Ikona",
-            name: "icon",
-        }),
         defineLocalizedString({
             title: "Cena",
             name: "price",
-        }),
-        defineColorPicker({
-            title: "Kolor Gradient Od",
-            name: "colorFrom",
-        }),
-        defineColorPicker({
-            title: "Kolor Gradient Do",
-            name: "colorTo",
         }),
         defineLocalizedString({
             title: "Tekst przycisku akcji - Zapytaj",
