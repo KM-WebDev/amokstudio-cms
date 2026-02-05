@@ -22,6 +22,7 @@ import { HomeTitle } from "./documents/home/HomeTitle";
 import { Navigation } from "./documents/Navigation";
 import { OfferBenefits } from "./documents/offer/OfferBenefits";
 import { OfferCTA } from "./documents/offer/OfferCTA";
+import { OfferPage } from "./documents/offer/OfferPage";
 import { OfferServices } from "./documents/offer/OfferServices";
 import { OfferTitle } from "./documents/offer/OfferTitle";
 import { PortfolioCTA } from "./documents/portfolio/PortfolioCTA";
@@ -102,7 +103,13 @@ export const schema: Schema = {
         },
         offer: {
             title: "Oferta",
-            documents: [OfferTitle, OfferServices, OfferBenefits, OfferCTA],
+            documents: [
+                OfferTitle,
+                OfferPage,
+                OfferServices,
+                OfferBenefits,
+                OfferCTA,
+            ],
         },
         process: {
             title: "Proces",
