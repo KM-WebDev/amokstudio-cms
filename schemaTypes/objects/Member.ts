@@ -27,7 +27,7 @@ export const Member = defineObject({
     ],
     preview: {
         select: {
-            title: "name",
+            title: "name.pl",
             media: "photo",
         },
         prepare(selection) {
