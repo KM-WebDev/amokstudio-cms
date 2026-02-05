@@ -1,15 +1,18 @@
 import {
-    defineObject,
-    defineLocalizedString,
     defineImage,
-    defineString,
+    defineLocalizedString,
+    defineObject,
 } from "../definitions";
 
 export const Member = defineObject({
     title: "Członek zespołu",
     name: "member",
     fields: [
-        defineString({
+        // defineString({
+        //     title: "Imię i nazwisko",
+        //     name: "name",
+        // }),
+        defineLocalizedString({
             title: "Imię i nazwisko",
             name: "name",
         }),
