@@ -61,7 +61,7 @@ export const ContactInfo = defineSingletonDocument({
             title: "Sociale",
             name: "socials",
             description: "Linki do profili w mediach społecznościowych",
-            elementType: "localizedString",
+            elementType: "string",
             group: "socials",
         }),
     ],
