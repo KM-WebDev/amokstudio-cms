@@ -18,5 +18,9 @@ export const ProcessTitle = defineSingletonDocument({
             name: "description",
             title: "Opis Strony",
         }),
+        defineLocalizedText({
+            name: "ogTitle",
+            title: "Tytuł udostępniania w mediach społecznościowych",
+        }),
     ],
 });
