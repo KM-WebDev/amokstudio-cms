@@ -16,7 +16,7 @@ export const ContactTitle = defineSingletonDocument({
         }),
         defineLocalizedText({
             name: "description",
-            title: "Opis Strony",
+            title: "Opis Strony widoczny w wynikach wyszukiwania",
         }),
         defineLocalizedText({
             name: "ogTitle",

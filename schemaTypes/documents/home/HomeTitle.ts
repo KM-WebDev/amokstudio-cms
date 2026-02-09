@@ -17,7 +17,7 @@ export const HomeTitle = defineSingletonDocument({
         }),
         defineLocalizedText({
             name: "description",
-            title: "Opis Strony widoczny dla wyszukiwarek",
+            title: "Opis Strony widoczny w wynikach wyszukiwania",
         }),
         defineArrayOf({
             name: "keywords",
