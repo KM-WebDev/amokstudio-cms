@@ -244,7 +244,7 @@ export function defineReferenceTo({ to, weak, ...rest }: ReferenceToProps) {
                 name: "",
                 type: "reference",
                 to: [{ type: to }],
-                options: { disableNew: true },
+                // options: { disableNew: true },
                 weak: weak,
             }),
         ],

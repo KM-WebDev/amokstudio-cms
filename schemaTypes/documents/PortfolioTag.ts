@@ -1,5 +1,5 @@
 import { Tag } from "lucide-react";
-import type { RuleDef } from "sanity";
+import type { Rule, ValidationContext } from "sanity";
 import { defineLocalizedString, defineOrderedDocument } from "../definitions";
 
 export const PortfolioTag = defineOrderedDocument({
@@ -10,48 +10,51 @@ export const PortfolioTag = defineOrderedDocument({
         defineLocalizedString({
             name: "title",
             title: "Nazwa Taga",
-            validation: <T>(rule: RuleDef<T>) =>
-                rule.custom(async (value: any, context) => {
-                    if (!value) return true;
+            // @ts-expect-error
+            validation: (rule: Rule) =>
+                rule
+                    .required()
+                    .custom(async (value: any, context: ValidationContext) => {
+                        if (!value) return true;
 
-                    const client = context.getClient({
-                        apiVersion: "2023-01-01",
-                    });
-                    const currentDocId = context.document?._id?.replace(
-                        "drafts.",
-                        ""
-                    );
-
-                    // Check for Polish title duplicates
-                    if (value.pl) {
-                        const plQuery = `count(*[_type == "portfolioTag" && title.pl == $title && !(_id in [$id, $draftId])]) > 0`;
-                        const plExists = await client.fetch(plQuery, {
-                            title: value.pl,
-                            id: currentDocId,
-                            draftId: `drafts.${currentDocId}`,
+                        const client = context.getClient({
+                            apiVersion: "2023-01-01",
                         });
+                        const currentDocId = context.document?._id?.replace(
+                            "drafts.",
+                            ""
+                        );
 
-                        if (plExists) {
-                            return "Tag z taką nazwą (PL) już istnieje";
+                        // Check for Polish title duplicates
+                        if (value.pl) {
+                            const plQuery = `count(*[_type == "portfolioTag" && title.pl == $title && !(_id in [$id, $draftId])]) > 0`;
+                            const plExists = await client.fetch(plQuery, {
+                                title: value.pl,
+                                id: currentDocId,
+                                draftId: `drafts.${currentDocId}`,
+                            });
+
+                            if (plExists) {
+                                return "Tag z taką nazwą (PL) już istnieje";
+                            }
                         }
-                    }
 
-                    // Check for English title duplicates
-                    if (value.en) {
-                        const enQuery = `count(*[_type == "portfolioTag" && title.en == $title && !(_id in [$id, $draftId])]) > 0`;
-                        const enExists = await client.fetch(enQuery, {
-                            title: value.en,
-                            id: currentDocId,
-                            draftId: `drafts.${currentDocId}`,
-                        });
+                        // Check for English title duplicates
+                        if (value.en) {
+                            const enQuery = `count(*[_type == "portfolioTag" && title.en == $title && !(_id in [$id, $draftId])]) > 0`;
+                            const enExists = await client.fetch(enQuery, {
+                                title: value.en,
+                                id: currentDocId,
+                                draftId: `drafts.${currentDocId}`,
+                            });
 
-                        if (enExists) {
-                            return "Tag z taką nazwą (EN) już istnieje";
+                            if (enExists) {
+                                return "Tag z taką nazwą (EN) już istnieje";
+                            }
                         }
-                    }
 
-                    return true;
-                }),
+                        return true;
+                    }),
         }),
     ],
 });

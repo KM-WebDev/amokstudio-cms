@@ -50,7 +50,6 @@ export const PortfolioSlug = defineOrderedDocument({
             name: "tags",
             to: "portfolioTag",
             group: "main",
-            weak: true,
         }),
         defineLocalizedString({
             title: "Krótki opis",

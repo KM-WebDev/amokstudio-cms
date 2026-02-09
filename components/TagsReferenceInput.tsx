@@ -26,11 +26,24 @@ export default function TagsReferenceInput(props: TagsReferenceInputProps) {
     const typedValue = value as ReferenceValue[];
 
     useEffect(() => {
-        client
-            .fetch<
-                Tag[]
-            >(`*[_type == "portfolioTag"] | order(title.pl asc){_id, "title": title.pl}`)
-            .then(setTags);
+        const fetchTags = () => {
+            client
+                .fetch<
+                    Tag[]
+                >(`*[_type == "portfolioTag" && !(_id in path("drafts.**"))] | order(orderRank){_id, "title": title.pl}`)
+                .then(setTags);
+        };
+
+        fetchTags();
+
+        // Subscribe to changes in portfolioTag documents
+        const subscription = client
+            .listen('*[_type == "portfolioTag"]')
+            .subscribe(() => {
+                fetchTags();
+            });
+
+        return () => subscription.unsubscribe();
     }, [client]);
 
     const toggleTag = (tag: Tag) => {
