@@ -50,7 +50,12 @@ import { FormQuestion } from "./objects/FormQuestion";
 import { FormSingleChoice } from "./objects/FormSingleChoice";
 import { Gallery } from "./objects/Gallery";
 import { HeadingSection } from "./objects/HeadingSection";
-import { LocalizedString, LocalizedText } from "./objects/Localized";
+import {
+    LocalizedString,
+    LocalizedStringWithCount,
+    LocalizedText,
+    LocalizedTextWithCount,
+} from "./objects/Localized";
 import { Member } from "./objects/Member";
 import { Review } from "./objects/Review";
 import { Section } from "./objects/Section";
@@ -152,6 +157,8 @@ export const schema: Schema = {
         Review,
         LocalizedString,
         LocalizedText,
+        LocalizedStringWithCount,
+        LocalizedTextWithCount,
         FormQuestion,
         FormChoice,
         FormSingleChoice,

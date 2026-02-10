@@ -97,10 +97,17 @@ export function defineColorPicker(props: ColorType) {
     }) as FieldDefinition<"color">; // Otherwise linter complains...
 }
 
-export function defineLocalizedString(props: StringType) {
+export function defineLocalizedString({ ...props }: StringType) {
     return defineField({
         ...props,
         type: "localizedString",
+    });
+}
+
+export function defineLocalizedStringWithCount({ ...props }: StringType) {
+    return defineField({
+        ...props,
+        type: "localizedStringCount",
     });
 }
 
@@ -209,6 +216,13 @@ export function defineLocalizedText(props: TextType) {
     return defineField({
         ...props,
         type: "localizedText",
+    });
+}
+
+export function defineLocalizedTextWithCount(props: TextType) {
+    return defineField({
+        ...props,
+        type: "localizedTextCount",
     });
 }
 
