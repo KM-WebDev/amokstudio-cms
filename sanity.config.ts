@@ -20,22 +20,21 @@ const plugins = [
     }),
     colorInput(),
     tags(),
+
+    EnablePresentationTool
+        ? presentationTool({
+              previewUrl: {
+                  initial: FrontEndUrl,
+                  previewMode: {
+                      enable: "/api/draft-mode/enable",
+                      disable: "/api/draft-mode/disable",
+                  },
+              },
+              allowOrigins: [FrontEndUrl ?? ""],
+          })
+        : { name: "" },
 ];
 
-if (EnablePresentationTool) {
-    plugins.push(
-        presentationTool({
-            previewUrl: {
-                initial: FrontEndUrl,
-                previewMode: {
-                    enable: "/api/draft-mode/enable",
-                    disable: "/api/draft-mode/disable",
-                },
-            },
-            allowOrigins: [FrontEndUrl ?? ""],
-        })
-    );
-}
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 
 const isOrderable = (doc: DocumentDefinition) =>
