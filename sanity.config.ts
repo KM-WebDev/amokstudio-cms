@@ -8,8 +8,9 @@ import {
     type FieldDefinition,
 } from "sanity";
 import { tags } from "sanity-plugin-tags-v4";
+import { presentationTool } from "sanity/presentation";
 import { StructureBuilder, structureTool } from "sanity/structure";
-import { Dataset } from "./env";
+import { Dataset, EnablePresentationTool, FrontEndUrl } from "./env";
 import { schema, type Page } from "./schemaTypes";
 
 const devPlugins = [visionTool()];
@@ -21,6 +22,20 @@ const plugins = [
     tags(),
 ];
 
+if (EnablePresentationTool) {
+    plugins.push(
+        presentationTool({
+            previewUrl: {
+                initial: FrontEndUrl,
+                previewMode: {
+                    enable: "/api/draft-mode/enable",
+                    disable: "/api/draft-mode/disable",
+                },
+            },
+            allowOrigins: [FrontEndUrl ?? ""],
+        })
+    );
+}
 const singletonActions = new Set(["publish", "discardChanges", "restore"]);
 
 const isOrderable = (doc: DocumentDefinition) =>
