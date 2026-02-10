@@ -1,9 +1,10 @@
+import { LayoutPanelTop } from "lucide-react";
 import {
+    defineImage,
+    defineLocalizedString,
     defineLocalizedText,
     defineObject,
-    defineLocalizedString,
 } from "../definitions";
-import { LayoutPanelTop } from "lucide-react";
 
 export const HeadingSection = defineObject({
     title: "Sekcja",
@@ -13,6 +14,10 @@ export const HeadingSection = defineObject({
         defineLocalizedString({
             title: "Nagłówek",
             name: "heading",
+        }),
+        defineImage({
+            title: "Obraz",
+            name: "image",
         }),
         defineLocalizedText({
             title: "Zawartość",
