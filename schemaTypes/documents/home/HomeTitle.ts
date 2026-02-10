@@ -2,7 +2,8 @@ import { Tag } from "lucide-react";
 import {
     defineArrayOf,
     defineLocalizedString,
-    defineLocalizedText,
+    defineLocalizedStringWithCount,
+    defineLocalizedTextWithCount,
     defineSingletonDocument,
 } from "../../definitions";
 
@@ -11,12 +12,14 @@ export const HomeTitle = defineSingletonDocument({
     name: "homeTitle",
     icon: Tag,
     fields: [
-        defineLocalizedString({
+        defineLocalizedStringWithCount({
             name: "metaTitle",
+            description: "od 50 do 60 znaków",
             title: "Tytuł strony na karcie przeglądarki",
         }),
-        defineLocalizedText({
+        defineLocalizedTextWithCount({
             name: "description",
+            description: "od 120 do 160 znaków",
             title: "Opis Strony widoczny w wynikach wyszukiwania",
         }),
         defineArrayOf({
@@ -29,8 +32,9 @@ export const HomeTitle = defineSingletonDocument({
                 }),
             ],
         }),
-        defineLocalizedText({
+        defineLocalizedTextWithCount({
             name: "ogTitle",
+            description: "do 200 znaków",
             title: "Tytuł udostępniania w mediach społecznościowych",
         }),
     ],
