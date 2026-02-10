@@ -1,5 +1,6 @@
 import { LayoutPanelTop } from "lucide-react";
 import {
+    defineBool,
     defineImage,
     defineLocalizedString,
     defineLocalizedText,
@@ -18,6 +19,11 @@ export const HeadingSection = defineObject({
         defineImage({
             title: "Obraz",
             name: "image",
+        }),
+        defineBool({
+            title: "Obraz po lewej?",
+            name: "imageLeft",
+            initialValue: true,
         }),
         defineLocalizedText({
             title: "Zawartość",
