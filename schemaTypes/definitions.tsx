@@ -145,7 +145,8 @@ export function defineImage({
             defineLocalizedString({
                 title: "Tekst alternatywny",
                 name: "alt",
-                description: "Ważne dla dostępności i SEO",
+                description:
+                    "Tekst który będzie czytany przez czytniki ekranu oraz wyświetlany, gdy obraz się nie załaduje. Również ważny dla SEO, powinien zawierać opis tego co jest na zdjęciu.",
             }),
             // defineDropDown({
             //     title: "Proporcje zdjęcia",
