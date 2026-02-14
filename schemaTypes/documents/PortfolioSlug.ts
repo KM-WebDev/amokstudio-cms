@@ -93,7 +93,7 @@ export const PortfolioSlug = defineOrderedDocument({
         defineArrayOfType({
             title: "Sekcje",
             name: "sections",
-            elementType: "headingSection",
+            elementType: "headingImageSection",
             group: "content",
         }),
         defineField({
