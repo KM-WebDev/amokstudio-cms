@@ -13,6 +13,7 @@ import { ContactInfo } from "./documents/contact/ContactInfo";
 import { ContactTitle } from "./documents/contact/ContactTitle";
 import { HomeAbout } from "./documents/home/HomeAbout";
 import { HomeCTA } from "./documents/home/HomeCTA";
+import { HomeFAQ } from "./documents/home/HomeFAQ";
 import { HomeHero } from "./documents/home/HomeHero";
 import { HomePortfolio } from "./documents/home/HomePortfolio";
 import { HomeReviews } from "./documents/home/HomeReviews";
@@ -49,6 +50,7 @@ import { FormEmail } from "./objects/FormEmail";
 import { FormQuestion } from "./objects/FormQuestion";
 import { FormSingleChoice } from "./objects/FormSingleChoice";
 import { Gallery } from "./objects/Gallery";
+import { HeadingImageSection } from "./objects/HeadingImageSection";
 import { HeadingSection } from "./objects/HeadingSection";
 import {
     LocalizedString,
@@ -86,6 +88,7 @@ export const schema: Schema = {
                 HomeSteps,
                 HomePortfolio,
                 HomeReviews,
+                HomeFAQ,
                 HomeCTA,
             ],
         },
@@ -153,6 +156,7 @@ export const schema: Schema = {
         Capsule,
         Section,
         HeadingSection,
+        HeadingImageSection,
         Gallery,
         Review,
         LocalizedString,
